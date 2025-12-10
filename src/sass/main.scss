@@ -1,8 +1,17 @@
-// --- Abstracts --- //
+// --- Font Awesome --- //
 
-@use "./abstracts/reset";
-@use "./abstracts/mixins" as mix;
+@use "@fortawesome/fontawesome-free/css/all.css" as *;
+
+// --- Abstracts --- //
+@use "./abstracts/variables";
+@use "./abstracts/mixins";
+
+// --- Base --- //
+@use "./base/reset";
+@use "./base/typography";
+
+// --- Utilities --- //
+@use "./utilities/spacing";
 
 // ---  Layout --- //
-
 @use "./layouts/header";

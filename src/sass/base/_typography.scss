@@ -1,0 +1,10 @@
+@use "../abstracts/variables" as v;
+body {
+	font-family: v.$font-primary;
+}
+
+h1,
+h2,
+h3 {
+	font-family: v.$font-secondary;
+}
