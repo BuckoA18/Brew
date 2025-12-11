@@ -1,10 +1,21 @@
 @use "../abstracts/variables" as v;
 body {
 	font-family: v.$font-primary;
+	color: black;
 }
 
 h1,
 h2,
 h3 {
 	font-family: v.$font-secondary;
+	font-weight: 600;
+	color: black;
+}
+
+h1 {
+	font-weight: 800;
+}
+
+a {
+	text-decoration: none;
 }

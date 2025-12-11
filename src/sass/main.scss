@@ -1,5 +1,4 @@
 // --- Font Awesome --- //
-
 @use "@fortawesome/fontawesome-free/css/all.css" as *;
 
 // --- Abstracts --- //
@@ -11,7 +10,11 @@
 @use "./base/typography";
 
 // --- Utilities --- //
-@use "./utilities/spacing";
+@use "./utilities/utilities";
 
 // ---  Layout --- //
+@use "./layouts/container";
 @use "./layouts/header";
+
+// --- Components --- //
+@use "./components/intake";

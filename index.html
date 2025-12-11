@@ -13,15 +13,47 @@
 		<link rel="stylesheet" href="/src/sass/main.scss" />
 	</head>
 	<body>
-		<div class="conatiner p-xs">
+		<div class="container">
 			<header class="header">
-				<h1 class="header__logo">Brew</h1>
-				<div class="header__img--container">
-					<i class="fa-solid fa-circle-user fa-2x"></i>
+				<a href="/" class="header__logo">
+					<h1>Brew</h1>
+				</a>
+				<div class="header__profile">
+					<i class="header__profile--icon fa-solid fa-circle-user fa-2x"></i>
 				</div>
 			</header>
+
 			<main class="main">
-				<div class="intake"></div>
+				<div class="intake">
+					<div class="intake__progress">
+						<span class="intake__progress-value"
+							><span class="highlight">245</span>mg</span
+						>
+					</div>
+
+					<ul class="intake__list">
+						<li class="intake__list-item">
+							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
+							<h2 class="intake__list-item-title">espresso</h2>
+							<span class="intake__list-item-time">9:45 AM</span>
+						</li>
+						<li class="intake__list-item">
+							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
+							<h2 class="intake__list-item-title">filter</h2>
+							<span class="intake__list-item-time">11:45 AM</span>
+						</li>
+						<li class="intake__list-item">
+							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
+							<h2 class="intake__list-item-title">capuccino</h2>
+							<span class="intake__list-item-time">12:00 AM</span>
+						</li>
+						<li class="intake__list-item">
+							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
+							<h2 class="intake__list-item-title">decaf filter</h2>
+							<span class="intake__list-item-time">15:45 PM</span>
+						</li>
+					</ul>
+				</div>
 			</main>
 		</div>
 		<footer class="bootom-bar"></footer>

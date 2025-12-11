@@ -1,5 +1,11 @@
+@use "sass:map";
 @use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as v;
 
 .header {
 	@include mix.flex(space-between);
+	margin-bottom: map.get(v.$spacings, "xl");
+	.header__logo {
+		font-size: map.get(v.$font-sizes, "xl");
+	}
 }

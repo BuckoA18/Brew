@@ -1,0 +1,7 @@
+@use "sass:map";
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as v;
+
+.highlight {
+	font-size: map.get(v.$font-sizes, "lg");
+}
