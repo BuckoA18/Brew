@@ -2,12 +2,18 @@ import IntakeView from "./views/IntakeView";
 import AddDrinkView from "./views/AddDrinkView";
 import BottomBarView from "./views/BottomBarView";
 
-const controllPageNav = () => {
-	BottomBarView._handleContentSwitch();
+const views = {
+	IntakeView: IntakeView,
+	AddDrinkView: AddDrinkView,
+};
+
+const controllPageNav = (nextView) => {
+	const view = views[nextView];
+	view.render();
 };
 
 const init = () => {
-	controllPageNav();
+	BottomBarView.addHandlerClick(controllPageNav);
 };
 
 init();
