@@ -6,18 +6,12 @@
 	@include mix.flex();
 	flex-direction: column;
 	gap: map.get(v.$spacings, "lg");
-	margin: 0 auto map.get(v.$spacings, "xl");
-	max-width: map.get(v.$max-widths, "sm");
 
-	.add-drink__input {
-		padding: map.get(v.$spacings, "md");
-		border-radius: map.get(v.$border-radius, "md");
-		font-size: map.get(v.$font-sizes, "lg");
-		width: 100%;
-	}
+	max-width: map.get(v.$max-widths, "md");
 
 	.add-drink__list {
 		@include mix.ul();
+		border-radius: 0;
 	}
 
 	.add-drink__list-item {

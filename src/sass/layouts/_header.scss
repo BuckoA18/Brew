@@ -3,10 +3,8 @@
 @use "../abstracts/variables" as v;
 
 .header {
-	background-color: map.get(v.$colors, "bg-primary");
 	@include mix.flex(space-between);
 	width: 100%;
-	margin-bottom: map.get(v.$spacings, "xl");
 	box-shadow: map.get(v.$box-shadows, "md");
 	padding: map.get(v.$spacings, "md");
 	.header__logo {
