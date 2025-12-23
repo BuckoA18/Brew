@@ -3,11 +3,21 @@ import { html } from "../helpers";
 
 class AddDrinkView extends View {
 	_parentElement = document.querySelector(".main-view");
-
 	_data;
 
-	_generateMarkup(data) {
-		this._data = data;
+	addHandlerAddDrink(handler) {
+		const drinkList = this._parentElement.querySelector(".add-drink__list");
+
+		drinkList.addEventListener("click", (e) => {
+			const item = e.target.closest(".add-drink__list-item");
+			if (!item) return;
+
+			handler(item.dataset.id);
+		});
+	}
+
+	_generateMarkup(state) {
+		this._data = state.drinks;
 		const markup = html`
 			<div class="add-drink">
 				<ul class="add-drink__list">
@@ -32,17 +42,6 @@ class AddDrinkView extends View {
 				`;
 			})
 			.join("");
-	}
-
-	addHandlerAddDrink(handler) {
-		const drinkList = this._parentElement.querySelector(".add-drink__list");
-
-		drinkList.addEventListener("click", (e) => {
-			const item = e.target.closest(".add-drink__list-item");
-			if (!item) return;
-
-			handler(item.dataset.id);
-		});
 	}
 }
 

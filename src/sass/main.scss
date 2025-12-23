@@ -14,10 +14,10 @@
 @use "./utilities/utilities";
 
 // ---  Layout --- //
-@use "./layouts/container";
-@use "./layouts/header";
 @use "./layouts/main-view";
 
 // --- Components --- //
+@use "./components/header";
 @use "./components/intake";
 @use "./components/add-drink";
+@use "./components/nav-bar";

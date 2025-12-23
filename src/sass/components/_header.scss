@@ -1,0 +1,9 @@
+@use "sass:map";
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as v;
+
+.header {
+	&__container {
+		display: flex;
+	}
+}

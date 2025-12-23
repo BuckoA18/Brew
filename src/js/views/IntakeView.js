@@ -3,41 +3,46 @@ import { html } from "../helpers";
 
 class IntakeView extends View {
 	_parentElement = document.querySelector(".main-view");
+	_dailyDrinks;
+	_currentCaffeine;
 
-	_generateMarkup() {
+	_generateMarkup(state) {
+		this._dailyDrinks = state.dailyDrinks;
+		this._currentCaffeine = state.caffeine;
+		console.log(this._dailyDrinks);
 		const markup = html`
 			<div class="intake">
 				<div class="intake__progress">
 					<span class="intake__progress-value"
-						><span class="highlight">245</span>mg</span
+						><span class="highlight">${this._currentCaffeine}</span>mg</span
 					>
 				</div>
 
 				<ul class="intake__list">
-					<li class="intake__list-item">
-						<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-						<h2 class="intake__list-item-title">espresso</h2>
-						<span class="intake__list-item-time">9:45 AM</span>
-					</li>
-					<li class="intake__list-item">
-						<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-						<h2 class="intake__list-item-title">filter</h2>
-						<span class="intake__list-item-time">11:45 AM</span>
-					</li>
-					<li class="intake__list-item">
-						<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-						<h2 class="intake__list-item-title">capuccino</h2>
-						<span class="intake__list-item-time">12:00 AM</span>
-					</li>
-					<li class="intake__list-item">
-						<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-						<h2 class="intake__list-item-title">decaf filter</h2>
-						<span class="intake__list-item-time">15:45 PM</span>
-					</li>
+					${this._generateListItemMarkup()}
 				</ul>
 			</div>
 		`;
 		return markup;
+	}
+
+	_generateListItemMarkup() {
+		return this._dailyDrinks
+			.map((drink) => {
+				return html`
+					<li class="intake__list-item">
+						<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
+						<h2 class="intake__list-item-title">${drink.name}</h2>
+						<span class="intake__list-item-time">9:45 AM</span>
+					</li>
+				`;
+			})
+			.join("");
+	}
+
+	updateProgressBar(percentage) {
+		const progressBar = document.querySelector(".intake__progress");
+		progressBar?.style.setProperty("--progress", `${percentage}%`);
 	}
 }
 

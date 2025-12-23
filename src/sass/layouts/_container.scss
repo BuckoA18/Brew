@@ -1,8 +1,0 @@
-@use "sass:map";
-@use "../abstracts/variables" as v;
-
-.container {
-	width: 100vw;
-	height: 100vh;
-	padding: map.get(v.$spacings, "md");
-}

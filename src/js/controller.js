@@ -4,21 +4,21 @@ import AddDrinkView from "./views/AddDrinkView";
 import { initRouter } from "./router";
 import { ROUTES } from "./config";
 
-const controllIntake = () => {};
-
 const controllAddDrink = (id) => {
-	console.log(id);
+	model.storeDrink(id);
 };
 
 const controllRouter = () => {
 	const path = window.location.pathname;
 	const view = ROUTES[path];
 
-	view.render(model.state.drinks);
+	view.render(model.state);
 
-	// Only attach event listener if the AddDrinkView is loaded
 	if (view === AddDrinkView) {
 		AddDrinkView.addHandlerAddDrink(controllAddDrink);
+	}
+	if (view === IntakeView) {
+		IntakeView.updateProgressBar(model.state.progressPerc);
 	}
 };
 
