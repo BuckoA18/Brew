@@ -3,7 +3,13 @@
 @use "../abstracts/variables" as v;
 
 .header {
+	width: 100vw;
+
 	&__container {
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 60px;
+		margin-bottom: map.get(v.$spacings, "md");
 	}
 }

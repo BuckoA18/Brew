@@ -5,3 +5,8 @@
 .highlight {
 	font-size: map.get(v.$font-sizes, "lg");
 }
+
+.container {
+	max-width: 360px;
+	margin: 0 auto;
+}

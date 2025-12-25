@@ -3,22 +3,34 @@
 @use "../abstracts/variables" as v;
 
 .add-drink {
-	@include mix.flex();
+	display: flex;
+	align-items: center;
 	flex-direction: column;
-	gap: map.get(v.$spacings, "lg");
+	margin-bottom: map.get(v.$spacings, "xxl");
 
-	max-width: map.get(v.$max-widths, "md");
+	&__shortcuts {
+		width: 100%;
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
 
-	.add-drink__list {
-		@include mix.ul();
-		border-radius: 0;
+		& span {
+			padding: 1rem;
+			background-color: antiquewhite;
+		}
 	}
 
-	.add-drink__list-item {
+	&__input {
+	}
+	&__list {
+		@include mix.ul();
+	}
+
+	&__list-item {
 		@include mix.li();
 	}
 
-	.add-drink__list-item-caffeine {
+	&__list-item-caffeine {
 		margin-left: auto;
 	}
 }

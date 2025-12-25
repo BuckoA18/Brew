@@ -3,23 +3,29 @@
 @use "../abstracts/variables" as v;
 
 .intake {
-	@include mix.flex();
+	display: flex;
+	align-items: center;
 	flex-direction: column;
-	gap: map.get(v.$spacings, "xl");
-	max-width: map.get(v.$max-widths, "sm");
-	margin: map.get(v.$spacings, "xl") auto;
-	padding-bottom: 60px;
+	margin-bottom: map.get(v.$spacings, "xxl");
 
-	&__progress {
+	&__title {
+		margin-right: auto;
+		margin-bottom: map.get(v.$spacings, "md");
+		padding-left: map.get(v.$spacings, "md");
+	}
+
+	&__progress-bar {
+		position: fixed;
 		position: relative;
 		background: conic-gradient(
 			map.get(v.$colors, "primary") var(--progress, 0%),
 			map.get(v.$colors, "secondary") 0%
 		);
-		width: 240px;
-		height: 240px;
+		width: 280px;
+		height: 280px;
 		border-radius: map.get(v.$border-radius, "round");
 		box-shadow: map.get(v.$box-shadows, "lg");
+		margin-bottom: map.get(v.$spacings, "xl");
 
 		&-value {
 			position: absolute;
@@ -37,8 +43,8 @@
 		}
 		&::before {
 			content: "";
-			width: 180px;
-			height: 180px;
+			width: 200px;
+			height: 200px;
 			position: absolute;
 			background-color: map.get(v.$colors, "bg-primary");
 			border-radius: map.get(v.$border-radius, "round");
