@@ -1,24 +1,32 @@
 import * as model from "./model";
 import IntakeView from "./views/IntakeView";
 import AddDrinkView from "./views/AddDrinkView";
+import ProgressBarView from "./views/ProgressBarView";
+import DailyDrinksView from "./views/DailyDrinksView";
 import { initRouter } from "./router";
-import { ROUTES } from "./config";
 
-const controllAddDrink = (id) => {
-	model.storeDrink(id);
+const controllDashboard = () => {
+	IntakeView.render(model.state);
+	ProgressBarView.render(model.state);
+	DailyDrinksView.render(model.state);
+};
+
+const controllAddDrink = () => {
+	AddDrinkView.render(model.state);
 };
 
 const controllRouter = () => {
 	const path = window.location.pathname;
-	const view = ROUTES[path];
 
-	view.render(model.state);
-
-	if (view === AddDrinkView) {
-		AddDrinkView.addHandlerAddDrink(controllAddDrink);
-	}
-	if (view === IntakeView) {
-		IntakeView.updateProgressBar(model.state.progressPerc);
+	switch (path) {
+		case "/":
+			controllDashboard();
+			break;
+		case "/add":
+			controllAddDrink();
+			break;
+		default:
+			console.error("404: Page not found");
 	}
 };
 
