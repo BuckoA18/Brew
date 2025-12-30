@@ -6,11 +6,12 @@ class LogDrinkView extends View {
 		return document.querySelector(".main-view");
 	}
 
-	addHandlerAddDrink(handler) {
-		const drinkList = this._parentElement.querySelector(".add-drink__list");
+	addHandlerNewLog(handler) {
+		const parentElement = this._parentElement;
+		if (!parentElement) return;
 
-		drinkList.addEventListener("click", (e) => {
-			const item = e.target.closest(".add-drink__list-item");
+		this._parentElement.addEventListener("click", (e) => {
+			const item = e.target.closest(".log__item");
 			if (!item) return;
 
 			handler(item.dataset.id);
