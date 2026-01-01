@@ -1,5 +1,10 @@
 export const state = {
 	drinks: [],
+	search: {
+		query: "",
+		results: [],
+		shortcuts: [""],
+	},
 	dailyDrinks: [],
 	caffeine: 0,
 	maxCaffeine: 450,
@@ -13,6 +18,14 @@ export const fetchDrinks = async () => {
 		if (!response.ok) throw new Error(`Error: ${response.status}`);
 		const data = await response.json();
 		state.drinks = data;
+		state.search.shortcuts = [
+			...new Set(
+				state.drinks.map((drink) => {
+					return drink.category;
+				})
+			),
+		];
+		// console.log(state.search.shortcuts);
 	} catch (error) {
 		console.error(`Could not fetch data: ${error}`);
 	}
@@ -33,4 +46,22 @@ export const storeDrink = (id) => {
 
 	console.log("caffeine:", state.caffeine);
 	calcProgress();
+};
+
+export const searchDrinks = (query) => {
+	if (!query) return;
+	state.search.query = query;
+	state.search.results = state.drinks.filter((drink) => {
+		return drink.name.toLowerCase().includes(query.trim().toLowerCase());
+	});
+	// console.log("query: ", state.search.query);
+	// console.log("results: ", state.search.results);
+};
+
+export const searchDrinksShortcuts = (id) => {
+	state.search.results = state.drinks.filter((drink) => {
+		return drink.category.toLowerCase() === id;
+	});
+
+	console.log(state.search.results);
 };

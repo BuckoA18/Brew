@@ -2,6 +2,8 @@ import View from "./View";
 import { html } from "../helpers";
 
 class LogDrinkView extends View {
+	_query;
+
 	get _parentElement() {
 		return document.querySelector(".main-view");
 	}
@@ -29,6 +31,31 @@ class LogDrinkView extends View {
 			const input = this._parentElement.querySelector(".search-bar__input");
 			if (!input) return;
 			input.classList.toggle("search-bar__input--closed");
+		});
+	}
+
+	addHandlerGetQuery(handler) {
+		const parentElement = this._parentElement;
+		if (!parentElement) return;
+
+		this._parentElement.addEventListener("input", (e) => {
+			const query =
+				this._parentElement.querySelector(".search-bar__input").value;
+			handler(query);
+		});
+	}
+
+	addHandlerGetShortcutId(handler) {
+		const parentElement = this._parentElement;
+		if (!parentElement) return;
+
+		this._parentElement.addEventListener("click", (e) => {
+			const shortcut = e.target.closest(".log__shortcut-btn");
+			if (!shortcut) return;
+			const id = shortcut.dataset.id;
+			if (!id) return;
+
+			handler(id);
 		});
 	}
 

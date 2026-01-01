@@ -2,12 +2,16 @@ import View from "./View";
 import { html } from "../helpers";
 
 class DrinksListView extends View {
+	_data;
 	get _parentElement() {
 		return document.querySelector(".log__list");
 	}
 
 	_generateMarkup(state) {
-		const markup = state.drinks
+		this._data = state.search.results;
+		if (this._data.length === 0) this._data = state.drinks;
+
+		const markup = this._data
 			.map((drink) => {
 				return html`
 					<li class="log__item" data-id="${drink.id}">
