@@ -13,6 +13,10 @@ const controllDashboard = async () => {
 		IntakeView.render(model.state);
 		ProgressBarView.render(model.state);
 		ProgressBarView.updateProgressBar(model.state.progressPerc);
+
+		// Render message when no logged drink yet
+		if (model.state.dailyDrinks.length === 0) DailyDrinksView.renderMessage();
+
 		DailyDrinksView.render(model.state.dailyDrinks);
 	} catch (error) {
 		console.error(error);
@@ -25,7 +29,8 @@ const controllLogDrink = async () => {
 		LogDrinkView.render(model.state);
 		SearchBarView.render();
 		SearchShortcutsView.render(model.state.search.shortcuts);
-		DrinksListView.render(model.state);
+
+		DrinksListView.render();
 
 		// Attach listeners
 		SearchBarView.addHandlerToggle();

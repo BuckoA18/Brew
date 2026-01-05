@@ -2,11 +2,11 @@ import { html } from "../helpers";
 
 class View {
 	_data;
-	_message;
-	_errorMessage;
 
 	render(data) {
+		if (!data || (Array.isArray(data) && data.length === 0)) return;
 		this._data = data;
+
 		const parentElement = this._parentElement;
 		if (!parentElement) return;
 
@@ -19,6 +19,15 @@ class View {
 
 	clear() {
 		this._parentElement.innerHTML = "";
+	}
+
+	renderMessage(message = this._message) {
+		const markup = html`
+			<div class="message">
+				<p>${message}</p>
+			</div>
+		`;
+		this._parentElement.insertAdjacentHTML("afterbegin", markup);
 	}
 }
 

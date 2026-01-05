@@ -8,9 +8,6 @@ class DailyDrinksView extends View {
 	}
 
 	_generateMarkup() {
-		if (!this._data || this._data.length === 0) {
-			return this._generateMarkupMessage();
-		}
 		const markup = this._data
 			.map((drink) => {
 				return html`
@@ -23,12 +20,6 @@ class DailyDrinksView extends View {
 			})
 			.join("");
 		return markup;
-	}
-
-	_generateMarkupMessage(message = this._message) {
-		return html`<div class="message">
-			<p class="message__text">${message}</p>
-		</div> `;
 	}
 }
 

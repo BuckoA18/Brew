@@ -15,10 +15,7 @@ class DrinksListView extends View {
 		});
 	}
 
-	_generateMarkup(data) {
-		this._data = data.search.results;
-		if (this._data.length === 0) this._data = data.drinks;
-
+	_generateMarkup() {
 		const markup = this._data
 			.map((drink) => {
 				return html`
