@@ -16,6 +16,7 @@ class IntakeView extends View {
 				<div class="progress-bar__container"></div>
 				<ul class="intake__list"></ul>
 			</div>
+			<footer class="nav"></footer>
 		`;
 		return markup;
 	}

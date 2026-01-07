@@ -6,13 +6,16 @@ import DailyDrinksView from "./views/DailyDrinksView";
 import SearchShortcutsView from "./views/SearchShortcutsView";
 import DrinksListView from "./views/DrinksListView";
 import SearchBarView from "./views/SearchBarView";
+import NavigationView from "./views/NavigationView";
 import { initRouter } from "./router";
 
 const controllDashboard = async () => {
 	try {
 		// render structure
+
 		IntakeView.render(model.state);
 		ProgressBarView.render(model.state);
+		NavigationView.render();
 
 		// update progress bar
 		ProgressBarView.updateProgressBar(model.state.progressPerc);
@@ -37,10 +40,12 @@ const controllLogDrink = async () => {
 		model.getResults();
 
 		// render strucure
+
 		LogDrinkView.render(model.state);
 		SearchBarView.render();
 		SearchShortcutsView.render(model.state.search.shortcuts);
 		DrinksListView.render(model.state.search.results);
+		NavigationView.render();
 
 		// Attach listeners
 		SearchBarView.addHandlerToggle();
@@ -94,8 +99,6 @@ const controllRouter = () => {
 
 const init = async () => {
 	try {
-		// intial fetch
-
 		// Handling router
 		initRouter(controllRouter);
 		controllRouter();
@@ -104,4 +107,4 @@ const init = async () => {
 	}
 };
 
-// init();
+init();

@@ -18,6 +18,7 @@ class LogDrinkView extends View {
 				<div class="log__shortcuts"></div>
 				<ul class="log__list"></ul>
 			</div>
+			<footer class="nav"</footer>>
 		`;
 		return markup;
 	}

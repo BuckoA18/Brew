@@ -32,7 +32,6 @@
 
 		& select {
 			background-color: map.get(v.$colors, "bg-primary");
-			font-size: 1rem;
 		}
 	}
 }

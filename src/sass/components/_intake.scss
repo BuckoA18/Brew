@@ -33,7 +33,9 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 
-			@include mix.flex();
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			flex-direction: column;
 			gap: map.get(v.$spacings, "xs");
 
