@@ -1,10 +1,12 @@
 export const state = {
 	user: {
-		username: "",
+		firstName: "",
+		surName: "",
 		weight: "",
-		sensitivity: "",
+		metabolismSpeed: "",
 		maxCaffeine: 400,
 		dailyDrinks: [],
+		profileReady: false,
 	},
 	search: {
 		query: "",

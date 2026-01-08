@@ -72,10 +72,12 @@ const controllLogin = async () => {
 	}
 };
 
-const handleValidate = async () => {
-	console.log("first");
-	window.history.pushState(null, null, "/");
-	controllRouter();
+const handleValidate = async (data) => {
+	console.log(data);
+	if (model.state.user.profileReady) {
+		window.history.pushState(null, null, "/");
+		controllRouter();
+	}
 };
 
 const handleAddNewLog = async (id) => {
