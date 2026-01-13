@@ -21,10 +21,6 @@ const controllDashboard = async () => {
 		// update progress bar
 		ProgressBarView.updateProgressBar(model.state.user.progressPerc);
 
-		// render no-drink message
-		if (model.state.user.dailyDrinks.length === 0)
-			DailyDrinksView.renderMessage();
-
 		// render drinks
 		DailyDrinksView.render(model.state.user.dailyDrinks);
 	} catch (error) {
@@ -139,4 +135,4 @@ const init = async () => {
 	}
 };
 
-init();
+// init();

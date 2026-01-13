@@ -1,0 +1,50 @@
+@use "sass:map";
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as v;
+
+.progress-bar {
+	width: 300px;
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	&__outer {
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		padding: 20px;
+		background-color: map.get(v.$colors, "track");
+	}
+
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 260px;
+		height: 260px;
+		border-radius: 50%;
+		background-color: map.get(v.$colors, "bg");
+	}
+
+	&__label {
+		color: map.get(v.$colors, "text-secondary");
+	}
+}
+
+svg {
+	position: absolute;
+}
+
+circle {
+	transform: rotateZ(-90deg);
+	transform-origin: center;
+	fill: none;
+	stroke: map.get(v.$colors, "primary");
+	stroke-width: 20px;
+	stroke-dasharray: 400;
+	stroke-dashoffset: 0;
+	stroke-linecap: round;
+}

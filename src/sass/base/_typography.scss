@@ -4,7 +4,7 @@
 
 body {
 	font-family: v.$font-primary;
-	color: black;
+	color: map.get(v.$colors, "text-primary");
 	font-size: 1rem;
 }
 input,
@@ -13,15 +13,13 @@ select {
 }
 
 h1 {
-	font-weight: 800;
-	font-size: map.get(v.$font-sizes, "lg");
+	font-weight: 600;
+	font-size: map.get(v.$font-sizes, "xl");
 }
 
-h2,
-h3 {
-	font-family: v.$font-secondary;
+h2 {
 	font-weight: 600;
-	color: black;
+	font-size: map.get(v.$font-sizes, "lg");
 }
 
 a {

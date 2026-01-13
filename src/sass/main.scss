@@ -19,8 +19,9 @@
 // --- Components --- //
 @use "./components/header";
 @use "./components/intake";
+@use "./components/progress-bar";
+@use "./components/intake-limit";
 @use "./components/log";
-
 @use "./components/search-bar";
 @use "./components/shortcuts";
 @use "./components/message";

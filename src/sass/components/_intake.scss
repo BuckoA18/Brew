@@ -13,56 +13,23 @@
 		margin-bottom: map.get(v.$spacings, "md");
 		padding-left: map.get(v.$spacings, "md");
 	}
-
-	&__progress-bar {
-		position: fixed;
-		position: relative;
-		background: conic-gradient(
-			map.get(v.$colors, "primary") var(--progress, 0%),
-			map.get(v.$colors, "bg-primary") 0%
-		);
-		width: 280px;
-		height: 280px;
-		border-radius: map.get(v.$border-radius, "round");
-		box-shadow: map.get(v.$box-shadows, "inset");
-		margin-bottom: map.get(v.$spacings, "xl");
-
-		&-value {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-			gap: map.get(v.$spacings, "xs");
-
-			span {
-				font-size: map.get(v.$font-sizes, "xl");
-			}
-		}
-		&::before {
-			content: "";
-			width: 160px;
-			height: 160px;
-			position: absolute;
-			background-color: map.get(v.$colors, "bg-primary");
-			border-radius: map.get(v.$border-radius, "round");
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			box-shadow: map.get(v.$box-shadows, "md");
-		}
-	}
 }
 
 .intake__list {
-	@include mix.ul();
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
 
-	.intake__list-item {
-		@include mix.li();
+	.intake-card {
+		width: 100%;
+		padding: map.get(v.$spacings, "lg");
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		background-color: white;
+
+		border-radius: map.get(v.$border-radius, "sm");
 	}
 
 	.intake__list-item-time {

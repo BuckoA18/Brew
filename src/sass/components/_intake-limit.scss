@@ -1,0 +1,8 @@
+@use "sass:map";
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as v;
+
+.intake-limit {
+	margin-top: map.get(v.$spacings, "md");
+	color: map.get(v.$colors, "text-secondary");
+}

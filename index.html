@@ -13,44 +13,40 @@
 		<link rel="stylesheet" href="/src/sass/main.scss" />
 	</head>
 	<body>
-		<div>
-			<main class="main-view">
-				<!-- <header class="header">
-					<div class="header__container container">
-						<h1 class="header__title">Brew</h1>
-						<i class="fa-solid fa-user-circle fa-xl"></i>
+		<div class="main-view">
+			<header class="header">
+				<h2 class="header__title">Brew</h2>
+				<span class="header__text">Your daily caffeine</span>
+			</header>
+			<div class="intake">
+				<div class="progress-bar">
+					<div class="progress-bar__outer">
+						<div class="progress-bar__inner">
+							<h1 class="progress-bar__amount">145</h1>
+							<span class="progress-bar__label">mg</span>
+						</div>
 					</div>
-				</header>
-				<div class="intake container">
-					<div class="intake__progress-bar">
-						<span class="intake__progress-bar-value">
-							<span class="highlight">245</span>mg</span
-						>
-					</div>
-					<ul class="intake__list">
-						<li class="intake__list-item">
-							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="intake__list-item-title">espresso</h2>
-							<span class="intake__list-item-time">9:45 AM</span>
-						</li>
-						<li class="intake__list-item">
-							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="intake__list-item-title">filter</h2>
-							<span class="intake__list-item-time">11:45 AM</span>
-						</li>
-						<li class="intake__list-item">
-							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="intake__list-item-title">capuccino</h2>
-							<span class="intake__list-item-time">12:00 AM</span>
-						</li>
-						<li class="intake__list-item">
-							<i class="intake__list-item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="intake__list-item-title">decaf filter</h2>
-							<span class="intake__list-item-time">15:45 PM</span>
-						</li>
-					</ul>
+					<svg class="progress-bar__svg" width="300px" height="300px">
+						<circle class="progress-bar__circle" cx="150" cy="150" r="140" />
+					</svg>
 				</div>
-
+				<div class="intake-limit">
+					<span class="intake-limit__text">234 mg untill daily limit </span>
+				</div>
+				<!-- <ul class="intake__list">
+					<li class="intake-card">
+						<div class="intake-card__icon-container">
+							<i class="intake-card__icon fa-solid fa-mug-hot fa-xl"></i>
+						</div>
+						<div class="intake-card__content">
+							<h2 class="intake-card__title">espresso</h2>
+							<time class="intake-card__time">9:45 AM</time>
+						</div>
+						<span class="intake-card__caffeine">+64mg</span>
+					</li>
+				</ul> -->
+			</div>
+			<!-- 
 				<header class="header">
 					<div class="header__container container">
 						<h1 class="header__title">Log your drink</h1>
@@ -97,7 +93,7 @@
 					</ul>
 				</div> -->
 
-				<!-- <div class="login container">
+			<!-- <div class="login container">
 					<h1 class="login__title">Create Your Profile</h1>
 					<form class="login__form">
 						<div class="form-group">
@@ -141,8 +137,8 @@
 						<button class="login__button button">Set Up Profile</button>
 					</form>
 				</div> -->
-			</main>
 		</div>
+
 		<!-- <footer class="nav">
 			<nav class="nav__container">
 				<a href="/" class="nav__item" data-link
