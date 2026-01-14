@@ -7,13 +7,13 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	gap: 1rem;
+	gap: map.get(v.$spacings, "md");
 	width: 100%;
 
-	background-color: #fffefc;
+	background-color: map.get(v.$colors, "bg-secondary");
 	margin-top: map.get(v.$spacings, "md");
-	border-radius: map.get(v.$border-radius, "md");
-	padding: 1.6rem;
+	border-radius: map.get(v.$border-radius, "sm");
+	padding: map.get(v.$spacings, "md");
 
 	&__bar {
 		width: 100%;
@@ -21,7 +21,7 @@
 		background-color: map.get(v.$colors, "track");
 		position: relative;
 		overflow: hidden;
-		border-radius: 15px;
+		border-radius: map.get(v.$border-radius, "bar");
 	}
 
 	&__bar-svg {

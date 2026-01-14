@@ -1,3 +1,7 @@
 @use "sass:map";
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
+
+.block {
+	display: inline-block;
+}

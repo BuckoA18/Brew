@@ -14,10 +14,12 @@
 	</head>
 	<body>
 		<div class="main-view">
-			<header class="header">
+			<!--<header class="header">
 				<h2 class="header__title">Brew</h2>
 				<span class="header__text">Your daily caffeine</span>
 			</header>
+
+			
 			<div class="intake">
 				<div class="progress-bar">
 					<div class="progress-bar__outer">
@@ -56,65 +58,100 @@
 						<span class="caffeine-monitor__value">22:30 (1:45)</span>
 					</div>
 				</div>
-				<!-- <ul class="intake__list">
-					<li class="intake-card">
-						<div class="intake-card__icon-container">
-							<i class="intake-card__icon fa-solid fa-mug-hot fa-xl"></i>
-						</div>
-						<div class="intake-card__content">
-							<h2 class="intake-card__title">espresso</h2>
-							<time class="intake-card__time">9:45 AM</time>
-						</div>
-						<span class="intake-card__caffeine">+64mg</span>
-					</li>
-				</ul> -->
-			</div>
-			<!-- 
-				<header class="header">
-					<div class="header__container container">
-						<h1 class="header__title">Log your drink</h1>
-						<div class="search-bar">
-							<input
-								type="text"
-								class="search-bar__input search-bar__input--closed"
-							/>
-							<button class="search-bar__button">
-								<i class="fa-solid fa-magnifying-glass search-bar__icon"></i>
-							</button>
-						</div>
-					</div>
-				</header>
-				<div class="log container">
-					<div class="log__shortcuts">
-						<button class="log__shortcut-btn">Coffee</button>
-						<button class="log__shortcut-btn">Tea</button>
-						<button class="log__shortcut-btn">Chocolate</button>
-						<button class="log__shortcut-btn">Energy drink</button>
-						<button class="log__shortcut-btn">Pills</button>
-					</div>
-					<ul class="log__list">
-						<li class="log__item">
-							<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="log__item-title">espresso</h2>
-							<span class="log__item-caffeine">65 mg</span>
+
+				<div class="daily-log">
+					<h2 class="daily-log__title">Today's drinks</h2>
+					<ul class="daily-log__list">
+						<li class="drink-card">
+							<div class="drink-card__icon">
+								<i class="fa-solid fa-mug-hot fa-xl"></i>
+							</div>
+							<div class="drink-card__details">
+								<span class="drink-card__details-name">Espresso</span>
+								<span class="drink-card__details-time">09:15</span>
+							</div>
+							<span class="drink-card__caffeine">+45 mg</span>
 						</li>
-						<li class="log__item">
-							<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="log__item-title">filter</h2>
-							<span class="log__item-caffeine">120 mg</span>
+						<li class="drink-card">
+							<div class="drink-card__icon">
+								<i class="fa-solid fa-mug-hot fa-xl"></i>
+							</div>
+							<div class="drink-card__details">
+								<span class="drink-card__details-name">Espresso</span>
+								<span class="drink-card__details-time">09:15</span>
+							</div>
+							<span class="drink-card__caffeine">+45 mg</span>
 						</li>
-						<li class="log__item">
-							<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="log__item-title">capuccino</h2>
-							<span class="log__item-caffeine">80 mg</span>
+						<li class="drink-card">
+							<div class="drink-card__icon">
+								<i class="fa-solid fa-mug-hot fa-xl"></i>
+							</div>
+							<div class="drink-card__details">
+								<span class="drink-card__details-name">Espresso</span>
+								<span class="drink-card__details-time">09:15</span>
+							</div>
+							<span class="drink-card__caffeine">+45 mg</span>
 						</li>
-						<li class="log__item">
-							<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
-							<h2 class="log__item-title">decaf filter</h2>
-							<span class="log__item-caffeine">2 mg</span>
+						<li class="drink-card">
+							<div class="drink-card__icon">
+								<i class="fa-solid fa-mug-hot fa-xl"></i>
+							</div>
+							<div class="drink-card__details">
+								<span class="drink-card__details-name">Espresso</span>
+								<span class="drink-card__details-time">09:15</span>
+							</div>
+							<span class="drink-card__caffeine">+45 mg</span>
 						</li>
 					</ul>
-				</div> -->
+				</div>
+			</div> -->
+
+			<header class="header">
+				<h2 class="header__title">Log your drink</h2>
+				<button class="header__back-btn">
+					<i class="fa-solid fa-arrow-left"></i>
+				</button>
+			</header>
+			<!-- <div class="search-bar">
+				<input
+					type="text"
+					class="search-bar__input search-bar__input--closed"
+				/>
+				<button class="search-bar__button">
+					<i class="fa-solid fa-magnifying-glass search-bar__icon"></i>
+				</button>
+			</div>
+			<div class="log container">
+				<div class="log__shortcuts">
+					<button class="log__shortcut-btn">Coffee</button>
+					<button class="log__shortcut-btn">Tea</button>
+					<button class="log__shortcut-btn">Chocolate</button>
+					<button class="log__shortcut-btn">Energy drink</button>
+					<button class="log__shortcut-btn">Pills</button>
+				</div>
+				<ul class="log__list">
+					<li class="log__item">
+						<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
+						<h2 class="log__item-title">espresso</h2>
+						<span class="log__item-caffeine">65 mg</span>
+					</li>
+					<li class="log__item">
+						<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
+						<h2 class="log__item-title">filter</h2>
+						<span class="log__item-caffeine">120 mg</span>
+					</li>
+					<li class="log__item">
+						<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
+						<h2 class="log__item-title">capuccino</h2>
+						<span class="log__item-caffeine">80 mg</span>
+					</li>
+					<li class="log__item">
+						<i class="log__item-icon fa-solid fa-mug-hot fa-xl"></i>
+						<h2 class="log__item-title">decaf filter</h2>
+						<span class="log__item-caffeine">2 mg</span>
+					</li>
+				</ul>
+			</div> -->
 
 			<!-- <div class="login container">
 					<h1 class="login__title">Create Your Profile</h1>
@@ -161,20 +198,6 @@
 					</form>
 				</div> -->
 		</div>
-
-		<!-- <footer class="nav">
-			<nav class="nav__container">
-				<a href="/" class="nav__item" data-link
-					><i class="fa-solid fa-house fa-xl"></i
-				></a>
-				<a href="/add" class="nav__item" data-link
-					><i class="fa-solid fa-plus fa-xl"></i
-				></a>
-				<a href="" class="nav__item"
-					><i class="fa-regular fa-square fa-xl"></i
-				></a>
-			</nav>
-		</footer> -->
 	</body>
 	<script type="module" src="./src/js/controller.js"></script>
 </html>

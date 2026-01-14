@@ -14,25 +14,3 @@
 		padding-left: map.get(v.$spacings, "md");
 	}
 }
-
-.intake__list {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	width: 100%;
-
-	.intake-card {
-		width: 100%;
-		padding: map.get(v.$spacings, "lg");
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		background-color: white;
-
-		border-radius: map.get(v.$border-radius, "sm");
-	}
-
-	.intake__list-item-time {
-		margin-left: auto;
-	}
-}
