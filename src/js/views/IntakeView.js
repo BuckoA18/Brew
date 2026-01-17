@@ -7,15 +7,20 @@ class IntakeView extends View {
 	_generateMarkup() {
 		const markup = html`
 			<header class="header">
-				<div class="header__container container">
-					<h1 class="header__title">Brew</h1>
-
-					<a href="/add" data-link><i class="fa-solid fa-plus fa-xl"></i></a>
+				<div class="header__content header__content--dashboard">
+					<h2 class="header__title">Brew</h2>
 				</div>
 			</header>
-			<div class="intake container">
-				<div class="progress-bar__container"></div>
-				<ul class="intake__list"></ul>
+
+			<div class="intake">
+				<div class="progress-bar"></div>
+				<div class="intake-limit"></div>
+				<div class="caffeine-monitor"></div>
+
+				<div class="daily-log">
+					<h2 class="daily-log__title">Today's drinks</h2>
+					<ul class="daily-log__list"></ul>
+				</div>
 			</div>
 		`;
 		return markup;

@@ -5,7 +5,9 @@ import LoginFormView from "./views/LoginFormView";
 import IntakeView from "./views/IntakeView";
 import LogDrinkView from "./views/LogDrinkView";
 import ProgressBarView from "./views/ProgressBarView";
-import DailyDrinksView from "./views/DailyDrinksView";
+import IntakeLimitView from "./views/IntakeLimitView";
+import CaffieneMonitorView from "./views/CaffieneMonitorView";
+import DailyLogView from "./views/DailyLogView";
 import SearchShortcutsView from "./views/SearchShortcutsView";
 import DrinksListView from "./views/DrinksListView";
 import SearchBarView from "./views/SearchBarView";
@@ -13,16 +15,12 @@ import { initRouter } from "./router";
 
 const controllDashboard = async () => {
 	try {
-		// render structure
-
 		IntakeView.render(model.state);
 		ProgressBarView.render(model.state);
-
-		// update progress bar
-		ProgressBarView.updateProgressBar(model.state.user.progressPerc);
-
-		// render drinks
-		DailyDrinksView.render(model.state.user.dailyDrinks);
+		ProgressBarView.updateProgressBar(model.calcProgress());
+		IntakeLimitView.render(model.state);
+		CaffieneMonitorView.render(model.state);
+		DailyLogView.render(model.state.user.dailyDrinks);
 	} catch (error) {
 		console.error(error);
 	}
@@ -119,15 +117,15 @@ const controllRouter = () => {
 
 const init = async () => {
 	try {
-		if (!model.state.user.profileReady) {
-			window.history.replaceState({}, "", "/login");
-		}
-		window.addEventListener("pushstate", () =>
-			console.trace("PushState called from here:")
-		);
-		window.addEventListener("replacestate", () =>
-			console.trace("ReplaceState called from here:")
-		);
+		// if (!model.state.user.profileReady) {
+		// 	window.history.replaceState({}, "", "/login");
+		// }
+		// window.addEventListener("pushstate", () =>
+		// 	console.trace("PushState called from here:")
+		// );
+		// window.addEventListener("replacestate", () =>
+		// 	console.trace("ReplaceState called from here:")
+		// );
 		initRouter(controllRouter);
 		controllRouter();
 	} catch (error) {
@@ -135,4 +133,4 @@ const init = async () => {
 	}
 };
 
-// init();
+init();

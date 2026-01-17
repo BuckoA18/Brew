@@ -2,7 +2,7 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
-.menu {
+.side-menu {
 	width: 72%;
 	height: 100%;
 	background-color: map.get(v.$colors, "bg-primary");

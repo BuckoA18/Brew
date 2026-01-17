@@ -9,3 +9,16 @@
 	border: none;
 	padding: map.get(v.$spacings, md);
 }
+
+.login__button {
+	background-color: map.get(v.$colors, "primary");
+	border-radius: map.get(v.$border-radius, "md");
+	font-size: 1rem;
+	color: map.get(v.$colors, "font-primary");
+	transition: all 0.2s ease;
+
+	&:active {
+		transform: scale(0.98);
+		background-color: map.get(v.$colors, "primary-dark");
+	}
+}

@@ -9,3 +9,5 @@ export const VALIDATION_RULES = {
 	},
 	NAME_CHAR_CAP: 30,
 };
+
+export const CAFFEINE_BAR_CIRCUMFERENCE = 879;

@@ -1,13 +1,14 @@
 import * as helper from "./utilities/helpers";
+import { CAFFEINE_BAR_CIRCUMFERENCE } from "./utilities/config";
 
 export const state = {
 	user: {
 		firstName: "",
 		weight: "",
 		metabolism: "",
-		maxCaffeine: 400,
+		maxCaffeine: 560,
 		dailyDrinks: [],
-		caffeine: 0,
+		caffeine: 234,
 		progressPerc: 0,
 		profileReady: false,
 	},
@@ -25,7 +26,7 @@ export const fetchDrinks = async () => {
 
 		if (!response.ok) {
 			const error = new Error(
-				`Server responder with ${response.status}: ${response.statusText}`
+				`Server responder with ${response.status}: ${response.statusText}`,
 			);
 			throw error;
 		}
@@ -36,7 +37,7 @@ export const fetchDrinks = async () => {
 			...new Set(
 				state.drinks.map((drink) => {
 					return drink.category;
-				})
+				}),
 			),
 		];
 		// console.log(state.search.shortcuts);
@@ -47,10 +48,16 @@ export const fetchDrinks = async () => {
 
 export const calcProgress = () => {
 	const percentage = Math.round(
-		(state.user.caffeine / state.user.maxCaffeine) * 100
+		(state.user.caffeine / state.user.maxCaffeine) * 100,
 	);
+	const offset =
+		CAFFEINE_BAR_CIRCUMFERENCE -
+		(percentage / 100) * CAFFEINE_BAR_CIRCUMFERENCE;
 	state.user.progressPerc = percentage;
-	console.log("progress:", state.user.progressPerc);
+	console.log("progress:", state.user.progressPerc, "%");
+	console.log("offset:", offset);
+
+	return offset;
 };
 
 export const storeDrink = (id) => {
