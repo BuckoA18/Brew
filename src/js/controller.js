@@ -16,9 +16,12 @@ import { initRouter } from "./router";
 const controllDashboard = async () => {
 	try {
 		IntakeView.render(model.state);
+
 		ProgressBarView.render(model.state);
 		ProgressBarView.updateProgressBar(model.calcProgress());
-		IntakeLimitView.render(model.state);
+
+		model.calcCaffeineLeft();
+		IntakeLimitView.render(model.state.user);
 		CaffieneMonitorView.render(model.state);
 		DailyLogView.render(model.state.user.dailyDrinks);
 	} catch (error) {

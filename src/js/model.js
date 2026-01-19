@@ -6,9 +6,10 @@ export const state = {
 		firstName: "",
 		weight: "",
 		metabolism: "",
-		maxCaffeine: 560,
+		maxCaffeine: 400,
 		dailyDrinks: [],
-		caffeine: 234,
+		caffeine: 450,
+		caffeineLeft: "",
 		progressPerc: 0,
 		profileReady: false,
 	},
@@ -53,11 +54,19 @@ export const calcProgress = () => {
 	const offset =
 		CAFFEINE_BAR_CIRCUMFERENCE -
 		(percentage / 100) * CAFFEINE_BAR_CIRCUMFERENCE;
+
+	if (percentage >= 100) return 0;
 	state.user.progressPerc = percentage;
 	console.log("progress:", state.user.progressPerc, "%");
 	console.log("offset:", offset);
 
 	return offset;
+};
+
+export const calcCaffeineLeft = () => {
+	const caffeineLeft = state.user.maxCaffeine - state.user.caffeine;
+	state.user.caffeineLeft = caffeineLeft;
+	console.log("Caffeine left: ", caffeineLeft);
 };
 
 export const storeDrink = (id) => {

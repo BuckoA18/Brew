@@ -6,12 +6,15 @@ class IntakeLimitView extends View {
 		return document.querySelector(".intake-limit");
 	}
 
-	_generateMarkup(data) {
+	_generateMarkup() {
 		const markup = html`
-			<span class="intake-limit__label subtle">234 mg untill daily limit </span>
+			<span class="intake-limit__label subtle"
+				><span class="intake-limit__value">${this._data.caffeineLeft}</span> mg
+				untill daily limit
+			</span>
 		`;
 		return markup;
 	}
 }
-
+// add 56 mg over the limit if the daily limit is over
 export default new IntakeLimitView();
