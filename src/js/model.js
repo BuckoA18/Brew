@@ -8,7 +8,7 @@ export const state = {
 		metabolism: "",
 		maxCaffeine: 400,
 		dailyDrinks: [],
-		caffeine: 450,
+		caffeine: 0,
 		caffeineLeft: "",
 		progressPerc: 0,
 		profileReady: false,

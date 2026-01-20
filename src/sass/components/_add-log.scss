@@ -2,7 +2,8 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
-.main-view {
-	height: 100vh;
-	padding: map.get(v.$spacings, "md");
+.add-log {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
 }

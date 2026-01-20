@@ -21,6 +21,13 @@ class IntakeView extends View {
 					<h2 class="daily-log__title">Today's drinks</h2>
 					<ul class="daily-log__list"></ul>
 				</div>
+
+				<div class="add-log">
+					<a href="/add"
+						><button class="add-log__button btn data-link">
+							<i class="fa-solid fa-plus"></i></button
+					></a>
+				</div>
 			</div>
 		`;
 		return markup;

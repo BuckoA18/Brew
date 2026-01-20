@@ -19,6 +19,21 @@
 
 	&:active {
 		transform: scale(0.98);
-		background-color: map.get(v.$colors, "primary-dark");
+		background-color: map.get(v.$colors, "primary-light");
+	}
+}
+
+.add-log__button {
+	width: 0;
+	height: 0;
+	padding: 1.8rem;
+	border-radius: 50%;
+	background-color: map.get(v.$colors, "primary");
+	color: map.get(v.$colors, "font-primary");
+	box-shadow: 0 4px 12px rgba(30, 20, 0, 0.05);
+
+	&:active {
+		transform: scale(0.98);
+		background-color: map.get(v.$colors, "primary-light");
 	}
 }
