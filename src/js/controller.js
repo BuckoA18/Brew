@@ -45,7 +45,7 @@ const controllLogDrink = async () => {
 		DrinksListView.render(model.state.search.results);
 
 		// Attach listeners
-		SearchBarView.addHandlerToggle();
+
 		SearchBarView.addHandlerGetQuery(handleSearch);
 		SearchShortcutsView.addHandlerGetShortcutId(handleShortcuts);
 		DrinksListView.addHandlerNewLog(handleAddNewLog);
@@ -79,9 +79,7 @@ const handleSubmit = async (data) => {
 
 const handleAddNewLog = async (id) => {
 	try {
-		helper.getCurrentDate();
 		model.storeDrink(id);
-		model.calcProgress();
 
 		window.history.pushState({}, "", "/");
 		controllRouter();

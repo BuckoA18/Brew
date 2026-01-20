@@ -3,22 +3,22 @@ import { html } from "../utilities/helpers";
 
 class SearchShortcutsView extends View {
 	get _parentElement() {
-		return document.querySelector(".log__shortcuts");
+		return document.querySelector(".shortcuts");
 	}
 
 	addHandlerGetShortcutId(handler) {
 		this._parentElement?.addEventListener("click", (e) => {
-			const btn = e.target.closest(".log__shortcut-btn");
+			const btn = e.target.closest(".shortcut-btn");
 			if (!btn) return;
 
 			const id = btn.dataset.id;
 			if (!id) return;
 
 			this._parentElement
-				.querySelectorAll(".log__shortcut-btn")
-				.forEach((el) => el.classList.remove("log__shortcut-btn--active"));
+				.querySelectorAll(".shortcut-btn")
+				.forEach((el) => el.classList.remove("shortcut-btn--active"));
 
-			btn.classList.add("log__shortcut-btn--active");
+			btn.classList.add("shortcut-btn--active");
 
 			handler(id);
 		});
@@ -28,11 +28,11 @@ class SearchShortcutsView extends View {
 		const markup = this._data
 			.map((shortcut) => {
 				const isActive =
-					shortcut.toLowerCase() === "all" ? "log__shortcut-btn--active" : "";
+					shortcut.toLowerCase() === "all" ? "shortcut-btn--active" : "";
 
 				return html`<button
 					data-id="${shortcut.toLowerCase()}"
-					class="log__shortcut-btn ${isActive}"
+					class="shortcut-btn ${isActive}"
 				>
 					${shortcut}
 				</button> `;

@@ -23,7 +23,7 @@ class IntakeView extends View {
 				</div>
 
 				<div class="add-log">
-					<a href="/add"
+					<a href="/add" data-link
 						><button class="add-log__button btn data-link">
 							<i class="fa-solid fa-plus"></i></button
 					></a>

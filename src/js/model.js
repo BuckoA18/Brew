@@ -57,8 +57,8 @@ export const calcProgress = () => {
 
 	if (percentage >= 100) return 0;
 	state.user.progressPerc = percentage;
-	console.log("progress:", state.user.progressPerc, "%");
-	console.log("offset:", offset);
+	// console.log("progress:", state.user.progressPerc, "%");
+	// console.log("offset:", offset);
 
 	return offset;
 };
@@ -66,14 +66,21 @@ export const calcProgress = () => {
 export const calcCaffeineLeft = () => {
 	const caffeineLeft = state.user.maxCaffeine - state.user.caffeine;
 	state.user.caffeineLeft = caffeineLeft;
-	console.log("Caffeine left: ", caffeineLeft);
+	// console.log("Caffeine left: ", caffeineLeft);
 };
 
 export const storeDrink = (id) => {
 	const currentDrink = state.drinks.find((drink) => drink.id === id);
-	currentDrink.time = helper.getCurrentDate();
-	state.user.caffeine += currentDrink.caffeine_mg;
-	state.user.dailyDrinks.unshift(currentDrink);
+	if (!currentDrink) return;
+
+	const newEntry = {
+		...currentDrink,
+		time: helper.getCurrentDate(),
+	};
+
+	state.user.caffeine += newEntry.caffeine_mg;
+	state.user.dailyDrinks.unshift(newEntry);
+	console.log(state.user.dailyDrinks);
 };
 
 export const searchDrinks = (query) => {
