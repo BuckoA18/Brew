@@ -8,7 +8,9 @@ class IntakeView extends View {
 		const markup = html`
 			<header class="header">
 				<div class="header__content header__content--dashboard">
-					<h2 class="header__title">Brew</h2>
+					<div class="header__container">
+						<h2 class="header__title">Brew</h2>
+					</div>
 				</div>
 			</header>
 

@@ -9,12 +9,6 @@
 	&__content {
 		width: 100%;
 
-		&--dashboard {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
-
 		&--log {
 			position: static;
 			top: 0;
@@ -22,6 +16,8 @@
 	}
 
 	&__container {
+		height: 45px;
+		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -30,7 +26,6 @@
 
 	&__title {
 		font-weight: 800;
-		margin-bottom: map.get(v.$spacings, "sm");
 	}
 
 	&__back-btn {

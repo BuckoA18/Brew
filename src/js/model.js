@@ -1,5 +1,5 @@
 import * as helper from "./utilities/helpers";
-import { CAFFEINE_BAR_CIRCUMFERENCE } from "./utilities/config";
+import * as config from "./utilities/config";
 
 export const state = {
 	user: {
@@ -9,8 +9,8 @@ export const state = {
 		maxCaffeine: 400,
 		dailyDrinks: [],
 		caffeine: 0,
-		caffeineLeft: "",
-		caffeineInSystem: "",
+		caffeineUntillLimit: "",
+		caffeineInSystem: 0,
 		safeSleep: {
 			bedTime: "",
 			hoursToBedTime: "",
@@ -25,6 +25,8 @@ export const state = {
 	},
 	drinks: [],
 };
+
+let caffeineTimer = null;
 
 export const fetchDrinks = async () => {
 	try {
@@ -52,36 +54,39 @@ export const fetchDrinks = async () => {
 	}
 };
 
-export const calcProgress = () => {
+export const calcCaffeineProgress = () => {
 	const percentage = Math.round(
 		(state.user.caffeine / state.user.maxCaffeine) * 100,
 	);
 	const offset =
-		CAFFEINE_BAR_CIRCUMFERENCE -
-		(percentage / 100) * CAFFEINE_BAR_CIRCUMFERENCE;
+		config.CAFFEINE_BAR_CIRCUMFERENCE -
+		(percentage / 100) * config.CAFFEINE_BAR_CIRCUMFERENCE;
 
 	if (percentage >= 100) return 0;
-	state.user.progressPerc = percentage;
-	// console.log("progress:", state.user.progressPerc, "%");
-	// console.log("offset:", offset);
 
 	return offset;
 };
 
-export const calcCaffeineLeft = () => {
+export const calcMonitorProgress = () => {
+	const width = (state.user.caffeineInSystem / state.user.caffeine) * 100;
+	// console.log("width: ", width);
+	return width;
+};
+
+export const calcCaffeineUntillLimit = () => {
 	const caffeineLeft = state.user.maxCaffeine - state.user.caffeine;
 	state.user.caffeineLeft = caffeineLeft;
 	// console.log("Caffeine left: ", caffeineLeft);
 };
 
 export const calcCaffeineInSystem = () => {
-	const halfLife = 5;
+	const halfLife = config.CAFFEINE_HALF_LIFE;
+	const threshold = config.CAFFEINE_THRESHOLD;
 	const currentTime = new Date();
 	let totalCurrentCaffeine = 0;
 	let hoursUntilSafeSleep = 0;
-	const threshold = 50;
 
-	// Calculate remaining caffeine for every drink logged
+	//Calculate remaining caffeine for every drink logged
 	state.user.dailyDrinks.forEach((drink) => {
 		const elapsedMs = currentTime.getTime() - drink.time.getTime();
 		const elapsedHours = elapsedMs / (1000 * 60 * 60);
@@ -93,6 +98,7 @@ export const calcCaffeineInSystem = () => {
 		}
 	});
 
+	//Calculate how many hours until safe sleep (for furute features?)
 	if (totalCurrentCaffeine > threshold) {
 		hoursUntilSafeSleep =
 			halfLife * (Math.log(threshold / totalCurrentCaffeine) / Math.log(0.5));
@@ -109,8 +115,10 @@ export const calcCaffeineInSystem = () => {
 		minute: "2-digit",
 	});
 	window.dispatchEvent(new CustomEvent("caffeineUpdated"));
-	console.log("caffeine in system: ", totalCurrentCaffeine);
-	console.log("bed time: ", bedTime);
+
+	if (totalCurrentCaffeine <= 0) {
+		clearInterval(caffeineTimer);
+	}
 };
 
 export const storeDrink = (id) => {
@@ -124,10 +132,7 @@ export const storeDrink = (id) => {
 
 	state.user.caffeine += newEntry.caffeine_mg;
 	state.user.dailyDrinks.unshift(newEntry);
-	// console.log(state.user.dailyDrinks);
 };
-
-let caffeineTimer = null;
 
 export const startCaffeineMonitor = () => {
 	if (caffeineTimer) clearInterval(caffeineTimer);

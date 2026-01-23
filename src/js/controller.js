@@ -18,9 +18,9 @@ const controllDashboard = async () => {
 		IntakeView.render(model.state);
 
 		ProgressBarView.render(model.state);
-		ProgressBarView.updateProgressBar(model.calcProgress());
+		ProgressBarView.updateProgressBar(model.calcCaffeineProgress());
 
-		model.calcCaffeineLeft();
+		model.calcCaffeineUntillLimit();
 		IntakeLimitView.render(model.state.user);
 
 		CaffieneMonitorView.render(model.state);
@@ -122,7 +122,7 @@ const init = async () => {
 	try {
 		window.addEventListener("caffeineUpdated", () => {
 			CaffieneMonitorView.render(model.state);
-			CaffieneMonitorView.updateProgressBar(100);
+			CaffieneMonitorView.updateProgressBar(model.calcMonitorProgress());
 		});
 		initRouter(controllRouter);
 		controllRouter();
