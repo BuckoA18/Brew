@@ -135,7 +135,7 @@ export const startCaffeineMonitor = () => {
 
 export const searchDrinks = async (drinkQuery) => {
 	try {
-		const query = drinkQuery.toLowerCase().trim();
+		const query = drinkQuery?.toLowerCase().trim();
 
 		const results = await db.drinks
 			.filter((drink) => {

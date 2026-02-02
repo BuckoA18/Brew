@@ -45,6 +45,7 @@ const controllLogDrink = async () => {
 		// Attach listeners
 		SearchBarView.addHandlerGetQuery(handleSearch);
 		SearchBarView.addHandlerOnActiveInput(handleActiveInput);
+		SearchBarView.addHandlerClearSearchBar(handleSearch);
 		SearchShortcutsView.addHandlerGetShortcutId(handleShortcuts);
 		DrinksListView.addHandlerNewLog(handleAddNewLog);
 	} catch (error) {

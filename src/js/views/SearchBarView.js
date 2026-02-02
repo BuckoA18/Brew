@@ -20,10 +20,21 @@ class SearchBarView extends View {
 		});
 	}
 
+	addHandlerClearSearchBar(handler) {
+		const clearBtn = this._parentElement?.querySelector(".search__icon-clear");
+		const input = this._parentElement.querySelector(".search__input");
+		clearBtn?.addEventListener("click", () => {
+			input.value = "";
+			input.focus();
+
+			handler();
+		});
+	}
+
 	_generateMarkup() {
 		const markup = html`<i class="fa-solid fa-magnifying-glass"></i>
 			<input type="text" name="drink-name" class="search__input" />
-			<i class="fa-solid fa-xmark search__icon-reset"></i>`;
+			<i class="fa-solid fa-xmark search__icon-clear"></i>`;
 		return markup;
 	}
 }
