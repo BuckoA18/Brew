@@ -184,3 +184,19 @@ export const setProfile = (data) => {
 	console.log("Succesfull validation");
 	console.log("Ready profile data:", state.user);
 };
+
+export const checkDate = async () => {
+	try {
+		const currentDate = new Date().toLocaleDateString();
+		const lastLoggedItem = await db.consumption.orderBy("id").last();
+
+		if (!lastLoggedItem) return;
+		const lastLoggedDate = lastLoggedItem.time.toLocaleDateString();
+
+		if (currentDate !== lastLoggedDate) {
+			await db.consumption.clear();
+		}
+	} catch (error) {
+		throw error;
+	}
+};

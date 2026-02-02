@@ -22,7 +22,8 @@ class SearchBarView extends View {
 
 	_generateMarkup() {
 		const markup = html`<i class="fa-solid fa-magnifying-glass"></i>
-			<input type="text" name="drink-name" class="search__input" />`;
+			<input type="text" name="drink-name" class="search__input" />
+			<i class="fa-solid fa-xmark search__icon-reset"></i>`;
 		return markup;
 	}
 }

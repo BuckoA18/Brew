@@ -131,6 +131,7 @@ const controllRouter = () => {
 
 const init = async () => {
 	try {
+		await model.checkDate();
 		await model.setInitialState();
 		window.addEventListener("caffeineUpdated", () => {
 			CaffieneMonitorView.render(model.state);
