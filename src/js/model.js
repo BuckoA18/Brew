@@ -200,3 +200,24 @@ export const checkDate = async () => {
 		throw error;
 	}
 };
+
+export const registerServiceWorker = async () => {
+	if ("serviceWorker" in navigator) {
+		try {
+			const registration = await navigator.serviceWorker.register("/sw.js", {
+				scope: "/",
+			});
+			if (registration.installing) {
+				console.log("Service worker installing");
+			}
+			if (registration.waiting) {
+				console.log("Service worker installed");
+			}
+			if (registration.active) {
+				console.log("Service worker active");
+			}
+		} catch (error) {
+			throw error;
+		}
+	}
+};

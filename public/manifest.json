@@ -1,0 +1,11 @@
+{
+	"name": "Brew",
+	"icons": [
+		{
+			"src": "coffee_bean.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/"
+}

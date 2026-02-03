@@ -132,6 +132,7 @@ const controllRouter = () => {
 
 const init = async () => {
 	try {
+		model.registerServiceWorker();
 		await model.checkDate();
 		await model.setInitialState();
 		window.addEventListener("caffeineUpdated", () => {
