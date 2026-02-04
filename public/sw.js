@@ -3,6 +3,9 @@ const addResourcesToCache = async (resources) => {
 	await cache.addAll(resources);
 };
 
-self.addEventListener("install", (e) => {
-	e.waitUntill();
-});
+// self.addEventListener("install", (e) => {
+// 	e.waitUntil([addResourcesToCache([
+// 		"./",
+
+// 	])])
+// });
