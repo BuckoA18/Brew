@@ -6,20 +6,11 @@ class DrinksListView extends View {
 		return document.querySelector(".log-list");
 	}
 
-	addHandlerNewLog(handler) {
-		this._parentElement?.addEventListener("click", (e) => {
-			const item = e.target.closest(".drink-card");
-			if (!item) return;
-
-			handler(item.dataset.id);
-		});
-	}
-
 	addHandlerToggleDrinkEdit(handler) {
 		this._parentElement?.addEventListener("click", (e) => {
 			const item = e.target.closest(".drink-card");
 			if (!item) return;
-
+			console.log(item.dataset.id);
 			handler(item.dataset.id);
 		});
 	}

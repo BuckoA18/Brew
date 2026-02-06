@@ -5,8 +5,19 @@ class DrinkEditorView extends View {
 	get _parentElement() {
 		return document.querySelector(".drink-editor");
 	}
+	addHandlerSaveLog(handler) {
+		this._parentElement?.addEventListener("click", () => {
+			const saveButton = this._parentElement.querySelector(
+				".drink-editor__button--save",
+			);
+			if (!saveButton) return;
+			this._closeEditor();
+			handler(this._id);
+		});
+	}
 
-	toggleDrinkEditor() {
+	toggleDrinkEditor(id) {
+		this._id = id;
 		if (!this._parentElement.classList.contains("drink-editor--closed")) return;
 
 		this._parentElement.classList.remove("drink-editor--closed");
@@ -78,7 +89,7 @@ class DrinkEditorView extends View {
 					/>
 				</div>
 				<div class="drink-editor__field">
-					<button class="btn btn--save">Save</button>
+					<button class="drink-editor__button--save btn btn--save">Save</button>
 				</div>
 			</div>
 		`;

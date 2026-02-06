@@ -47,29 +47,30 @@ const controllLogDrink = async () => {
 		SearchBarView.addHandlerClearSearchBar(handleSearch);
 		SearchShortcutsView.addHandlerGetShortcutId(handleShortcuts);
 		DrinksListView.addHandlerToggleDrinkEdit(handleToggleDrinkEdit);
+		DrinkEditorView.addHandlerSaveLog(addHandlerSaveLog);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-const handleToggleDrinkEdit = async () => {
+const handleToggleDrinkEdit = async (id) => {
 	try {
-		DrinkEditorView.toggleDrinkEditor();
+		DrinkEditorView.toggleDrinkEditor(id);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-// const handleAddNewLog = async (id) => {
-// 	try {
-// 		model.storeDrink(id);
-// 		model.startCaffeineMonitor();
-// 		window.history.pushState({}, "", "/");
-// 		controllRouter();
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// };
+const addHandlerSaveLog = async (id) => {
+	try {
+		model.storeDrink(id);
+		model.startCaffeineMonitor();
+		window.history.pushState({}, "", "/");
+		controllRouter();
+	} catch (error) {
+		console.error(error);
+	}
+};
 
 const handleSearch = async (query) => {
 	try {
