@@ -6,13 +6,24 @@ class DrinkEditorView extends View {
 		return document.querySelector(".drink-editor");
 	}
 	addHandlerSaveLog(handler) {
-		this._parentElement?.addEventListener("click", () => {
+		this._parentElement?.addEventListener("click", (e) => {
+			e.preventDefault();
 			const saveButton = this._parentElement.querySelector(
 				".drink-editor__button--save",
 			);
-			if (!saveButton) return;
+			if (!e.target.contains(saveButton)) return;
+
+			const amount = +document.querySelector(".drink-editor__input--amount")
+				.value;
+			const time = document.querySelector(".drink-editor__input--time").value;
+
+			const drinkDate = new Date();
+			const [hours, minutes] = time.split(":");
+
+			drinkDate.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+
 			this._closeEditor();
-			handler(this._id);
+			handler(this._id, amount, drinkDate);
 		});
 	}
 
@@ -21,7 +32,6 @@ class DrinkEditorView extends View {
 		if (!this._parentElement.classList.contains("drink-editor--closed")) return;
 
 		this._parentElement.classList.remove("drink-editor--closed");
-		console.log(this._parentElement);
 
 		setTimeout(() => {
 			this._addOutsideClickListener();
@@ -40,10 +50,11 @@ class DrinkEditorView extends View {
 	_closeEditor() {
 		this._parentElement.classList.add("drink-editor--closed");
 		window.removeEventListener("click", this._outsideClickRef);
-		console.log(this._parentElement);
 	}
 
 	_generateMarkup() {
+		const drink = this._data;
+
 		const markup = html`
 			<div class="drink-editor__grabber"></div>
 
@@ -51,10 +62,10 @@ class DrinkEditorView extends View {
 				<div class="drink-editor__icon">
 					<i class="fa-solid fa-mug-hot fa-xl"></i>
 				</div>
-				<h2 class="drink-editor__title">Espresso</h2>
+				<h2 class="drink-editor__title">${drink.name}</h2>
 
 				<span class="drink-editor__caffeine subtle"
-					><span class="highlight">+45</span> mg</span
+					><span class="highlight">+${drink.caffeine_mg}</span> mg</span
 				>
 			</div>
 
@@ -84,8 +95,11 @@ class DrinkEditorView extends View {
 						type="time"
 						name="consumption"
 						id="consumption"
-						class="drink-editor__input"
-						value="09:14"
+						class="drink-editor__input drink-editor__input--time"
+						value=${drink.time.toLocaleTimeString("en-GB", {
+							hours: "2-digit",
+							minutes: "2-digit",
+						})}
 					/>
 				</div>
 				<div class="drink-editor__field">

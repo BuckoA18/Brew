@@ -10,7 +10,7 @@ class DrinksListView extends View {
 		this._parentElement?.addEventListener("click", (e) => {
 			const item = e.target.closest(".drink-card");
 			if (!item) return;
-			console.log(item.dataset.id);
+
 			handler(item.dataset.id);
 		});
 	}

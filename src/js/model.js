@@ -13,6 +13,7 @@ export const state = {
 		caffeine: 0,
 		caffeineUntillLimit: "",
 		caffeineInSystem: 0,
+		currentDrink: "",
 		safeSleep: {
 			bedTime: "",
 			hoursToBedTime: "",
@@ -104,23 +105,18 @@ export const calcCaffeineInSystem = () => {
 		minute: "2-digit",
 	});
 	window.dispatchEvent(new CustomEvent("caffeineUpdated"));
-	console.log(+totalCurrentCaffeine.toFixed(1));
 };
 
-export const storeDrink = (id) => {
-	const currentDrink = state.drinks.find((drink) => drink.id === id);
-	if (!currentDrink) return;
+export const storeDrink = async (id, amount, newTime) => {
+	// console.log(amount, newTime);
 
-	const newEntry = {
-		...currentDrink,
-		time: new Date(),
-	};
+	const baseDrink = await getDrinkData(id);
+	const currentDrink = { ...baseDrink, time: newTime };
 
-	db.consumption.add(newEntry);
-	console.log(db.consumption.toArray());
+	db.consumption.add(currentDrink);
 
-	state.user.caffeine += newEntry.caffeine_mg;
-	state.user.dailyDrinks.unshift(newEntry);
+	state.user.caffeine += currentDrink.caffeine_mg;
+	state.user.dailyDrinks.unshift(currentDrink);
 };
 
 export const startCaffeineMonitor = () => {
@@ -190,6 +186,23 @@ export const checkDate = async () => {
 		if (currentDate !== lastLoggedDate) {
 			await db.consumption.clear();
 		}
+	} catch (error) {
+		throw error;
+	}
+};
+
+export const getDrinkData = async (drinkId) => {
+	try {
+		const currentDrink = await db.drinks.get({ id: drinkId });
+		if (!currentDrink) return;
+
+		const newEntry = {
+			...currentDrink,
+			time: new Date(),
+		};
+
+		state.user.currentDrink = newEntry;
+		return newEntry;
 	} catch (error) {
 		throw error;
 	}

@@ -35,12 +35,12 @@ const controllDashboard = async () => {
 
 const controllLogDrink = async () => {
 	try {
+		// Render strucure
 		await model.searchShortcuts();
 		LogDrinkView.render(model.state);
 		SearchBarView.render();
 		SearchShortcutsView.render(model.state.search.shortcuts);
 		DrinksListView.render(model.state.search.results);
-		DrinkEditorView.render();
 
 		// Attach listeners
 		SearchBarView.addHandlerGetQuery(handleSearch);
@@ -55,15 +55,17 @@ const controllLogDrink = async () => {
 
 const handleToggleDrinkEdit = async (id) => {
 	try {
+		await model.getDrinkData(id);
+		DrinkEditorView.render(model.state.user.currentDrink);
 		DrinkEditorView.toggleDrinkEditor(id);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-const addHandlerSaveLog = async (id) => {
+const addHandlerSaveLog = async (id, amount, newTime) => {
 	try {
-		model.storeDrink(id);
+		await model.storeDrink(id, amount, newTime);
 		model.startCaffeineMonitor();
 		window.history.pushState({}, "", "/");
 		controllRouter();
