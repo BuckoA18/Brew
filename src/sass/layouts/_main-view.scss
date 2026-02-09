@@ -3,6 +3,9 @@
 @use "../abstracts/variables" as v;
 
 .main-view {
-	height: 100vh;
+	height: 100dvh;
 	padding: map.get(v.$spacings, "md");
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }

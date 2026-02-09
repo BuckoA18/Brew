@@ -1,0 +1,20 @@
+@use "sass:map";
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as v;
+
+.survey {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	background-color: map.get(v.$colors, "bg-primary");
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1rem;
+		width: 100vw;
+		height: 100vh;
+	}
+}

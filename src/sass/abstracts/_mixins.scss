@@ -9,3 +9,25 @@
 	padding: map.get(v.$spacings, "md");
 	box-shadow: 0 4px 12px rgba(30, 20, 0, 0.05);
 }
+
+@mixin button-save {
+	border: none;
+	padding: 1.4rem;
+	width: 100%;
+	background-color: #63bf3c;
+	color: white;
+	border-radius: map.get(v.$border-radius, "md");
+	font-size: 1rem;
+}
+
+@mixin input {
+	border-radius: map.get(v.$border-radius, "sm");
+	padding: map.get(v.$spacings, "md");
+
+	border: none;
+
+	&:focus {
+		outline: 2px solid;
+		outline-color: map.get(v.$colors, "primary");
+	}
+}
