@@ -4,7 +4,9 @@
 
 .survey {
 	background-color: map.get(v.$colors, "bg-primary");
-	flex: 1;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 
 	&__progress-bar {
 		width: 80%;
@@ -12,35 +14,9 @@
 		border-radius: 25px;
 		background-color: map.get(v.$colors, "primary");
 	}
-	&__container {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	&__card {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
-
-	&__title {
-		text-align: center;
-	}
-	&__input {
-		font-size: 2.4rem;
-		text-align: center;
-		width: 120px;
-		height: 120px;
-		border-radius: 25px;
-		background-color: map.get(v.$colors, "bg-secondary");
-		border: none;
-		box-shadow: 3px 8px 15px rgba(30, 20, 0, 0.05);
-	}
 
 	&__button {
+		margin-top: auto;
 		@include mix.button-next;
 	}
 }

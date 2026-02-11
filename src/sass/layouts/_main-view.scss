@@ -5,7 +5,7 @@
 .main-view {
 	height: 100dvh;
 	padding: map.get(v.$spacings, "md");
-	overflow: hidden;
+
 	display: flex;
 	flex-direction: column;
 }

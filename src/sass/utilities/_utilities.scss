@@ -20,6 +20,10 @@
 	filter: blur(0.1rem);
 }
 
+.hidden {
+	display: none;
+}
+
 .is-open {
 	.ham-menu__line {
 		position: absolute;

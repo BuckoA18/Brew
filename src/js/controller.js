@@ -12,6 +12,9 @@ import DrinksListView from "./views/DrinksListView";
 import SearchBarView from "./views/SearchBarView";
 import { initRouter } from "./router";
 import DrinkEditorView from "./views/DrinkEditorView";
+import WelcomeView from "./views/WelcomeView";
+import SurveyView from "./views/SurveyView";
+import StepsView from "./views/StepsView";
 
 const controllDashboard = async () => {
 	try {
@@ -47,9 +50,44 @@ const controllLogDrink = async () => {
 		SearchBarView.addHandlerClearSearchBar(handleSearch);
 		SearchShortcutsView.addHandlerGetShortcutId(handleShortcuts);
 		DrinksListView.addHandlerToggleDrinkEdit(handleToggleDrinkEdit);
-		DrinkEditorView.addHandlerSaveLog(addHandlerSaveLog);
+		DrinkEditorView.addHandlerSaveLog(handleSaveLog);
 	} catch (error) {
 		console.error(error);
+	}
+};
+
+const controllWelcome = async () => {
+	try {
+		WelcomeView.render();
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+const controllSurvey = async () => {
+	try {
+		SurveyView.render();
+		StepsView.render();
+		StepsView.navigateSurvey(model.state.survey.step);
+		SurveyView.addHandlerNavigateSurvey(handleNavigateSurvey);
+		model.state.survey.step++;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+const handleNavigateSurvey = async () => {
+	try {
+		if (model.state.survey.step > model.state.survey.maxSteps) {
+			window.history.pushState({}, "", "/");
+			controllRouter();
+		}
+
+		StepsView.render();
+		StepsView.navigateSurvey(model.state.survey.step);
+		model.state.survey.step++;
+	} catch (error) {
+		throw error;
 	}
 };
 
@@ -63,7 +101,7 @@ const handleToggleDrinkEdit = async (id) => {
 	}
 };
 
-const addHandlerSaveLog = async (id, amount, newTime) => {
+const handleSaveLog = async (id, amount, newTime) => {
 	try {
 		await model.storeDrink(id, amount, newTime);
 		model.startCaffeineMonitor();
@@ -94,8 +132,11 @@ const controllRouter = () => {
 	const path = window.location.pathname;
 
 	switch (path) {
-		case "/login":
-			controllLogin();
+		case "/survey":
+			controllSurvey();
+			break;
+		case "/welcome":
+			controllWelcome();
 			break;
 		case "/":
 			controllDashboard();
@@ -110,13 +151,13 @@ const controllRouter = () => {
 
 const init = async () => {
 	try {
-		// model.registerServiceWorker();
 		await model.checkDate();
 		await model.setInitialState();
 		window.addEventListener("caffeineUpdated", () => {
 			CaffieneMonitorView.render(model.state);
 			CaffieneMonitorView.updateProgressBar(model.calcMonitorProgress());
 		});
+		window.history.pushState(null, null, "/welcome");
 		initRouter(controllRouter);
 		controllRouter();
 	} catch (error) {
@@ -124,4 +165,4 @@ const init = async () => {
 	}
 };
 
-// init();
+init();

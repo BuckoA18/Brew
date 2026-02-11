@@ -26,6 +26,11 @@ export const state = {
 		results: [],
 		shortcuts: [],
 	},
+	survey: {
+		step: 1,
+		maxSteps: 5,
+		data: {},
+	},
 	drinks: [],
 };
 
