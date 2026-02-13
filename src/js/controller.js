@@ -66,11 +66,16 @@ const controllWelcome = async () => {
 
 const controllSurvey = async () => {
 	try {
+		// Render
 		SurveyView.render();
 		StepsView.render();
-		StepsView.navigateSurvey(model.state.survey.step);
+
+		// Hanblers
 		SurveyView.addHandlerNavigateSurvey(handleNavigateSurvey);
-		model.state.survey.step++;
+
+		// Logic
+		StepsView.navigateSurvey(model.state.survey.currentStep);
+		model.plusStep();
 	} catch (error) {
 		console.error(error);
 	}
@@ -78,14 +83,18 @@ const controllSurvey = async () => {
 
 const handleNavigateSurvey = async () => {
 	try {
-		if (model.state.survey.step > model.state.survey.maxSteps) {
+		// After last step, navigate to dashboard
+		if (model.state.survey.currentStep > model.state.survey.maxSteps) {
 			window.history.pushState({}, "", "/");
 			controllRouter();
+			return;
 		}
-
+		// Render
 		StepsView.render();
-		StepsView.navigateSurvey(model.state.survey.step);
-		model.state.survey.step++;
+
+		// Logic
+		StepsView.navigateSurvey(model.state.survey.currentStep);
+		model.plusStep();
 	} catch (error) {
 		throw error;
 	}

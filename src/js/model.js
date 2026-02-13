@@ -27,7 +27,7 @@ export const state = {
 		shortcuts: [],
 	},
 	survey: {
-		step: 1,
+		currentStep: 1,
 		maxSteps: 5,
 		data: {},
 	},
@@ -215,6 +215,10 @@ export const getDrinkData = async (drinkId) => {
 	} catch (error) {
 		throw error;
 	}
+};
+
+export const plusStep = async () => {
+	state.survey.currentStep++;
 };
 
 // export const registerServiceWorker = async () => {
