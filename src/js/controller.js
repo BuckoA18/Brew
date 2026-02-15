@@ -1,6 +1,6 @@
 import * as model from "./model";
 import * as helper from "./utilities/helpers";
-import * as db from "./db";
+import * as cfg from "./utilities/config";
 import IntakeView from "./views/IntakeView";
 import LogDrinkView from "./views/LogDrinkView";
 import ProgressBarView from "./views/ProgressBarView";
@@ -67,37 +67,23 @@ const controllWelcome = async () => {
 const controllSurvey = async () => {
 	try {
 		// Render
-		SurveyView.render();
-		StepsView.render();
+		SurveyView.render(cfg.SURVEY_SCHEMA, model.state.survey.currentStep);
 
-		// Hanblers
-		SurveyView.addHandlerNavigateSurvey(handleNavigateSurvey);
-
-		// Logic
-		StepsView.navigateSurvey(model.state.survey.currentStep);
-		model.plusStep();
+		// Handlers
+		SurveyView.addHandlerSurveyNav(handleSurveyNav);
 	} catch (error) {
 		console.error(error);
 	}
 };
 
-const handleNavigateSurvey = async () => {
+const handleSurveyNav = async () => {
 	try {
-		// After last step, navigate to dashboard
-		if (model.state.survey.currentStep > model.state.survey.maxSteps) {
-			window.history.pushState({}, "", "/");
-			controllRouter();
-			return;
-		}
 		// Render
-		StepsView.render();
+		StepsView.render(cfg.SURVEY_SCHEMA, model.state.survey.currentStep);
 
 		// Logic
-		StepsView.navigateSurvey(model.state.survey.currentStep);
 		model.plusStep();
-	} catch (error) {
-		throw error;
-	}
+	} catch (error) {}
 };
 
 const handleToggleDrinkEdit = async (id) => {

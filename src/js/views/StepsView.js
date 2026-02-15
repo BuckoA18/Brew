@@ -17,39 +17,47 @@ class StepsView extends View {
 		});
 	}
 
-	_generateMarkup() {
-		const markup = html` <div class="steps__card" data-step="1">
-				<h2 class="steps__title">Let's personalize your experience</h2>
+	_generateFactorsMarkup(data) {
+		const markup = data
+			.map((option) => {
+				return html` <div class="factors__card ">
+					<h2 class="factors__title">${option}</h2>
+				</div>`;
+			})
+			.join("");
+
+		return markup;
+	}
+
+	_generateMarkup(schema, currentStep) {
+		const currStepData = schema.find((step) => step.step === currentStep);
+		console.log(currStepData);
+
+		if (currStepData.options) {
+			const markup = html`
+			<div class="steps__card data-step="${currStepData.id}">
+				<h1 class="steps__title">${currStepData.title}</h1>
+				 <div class="factors">${this._generateFactorsMarkup(currStepData.options)}</div>
 			</div>
-			<div class="steps__card" data-step="2">
-				<h1 class="steps__title">
-					<label for="bodyweight">What is your current weight?</label>
-				</h1>
-				<input type="number" id="bodyweight" class="steps__input" />
+			`;
+
+			return markup;
+		}
+
+		if (currStepData.input) {
+			const markup = html`
+			<div class="steps__card data-step="${currStepData.id}">
+				<h1 class="steps__title" id="${currStepData.id}-label">${currStepData.title}</h1>
+				<input type="${currStepData.input}" id="${currStepData.id}" class="steps__input" aria-labelledby="${currStepData.id}-label}}-label">
 			</div>
-			<div class="steps__card" data-step="3">
-				<h1 class="steps__title">
-					<label for="age">How old are you?</label>
-				</h1>
-				<input type="number" id="age" class="steps__input" />
+		`;
+			return markup;
+		}
+		const markup = html`
+			<div class="steps__card data-step="${currStepData.id}">
+				<h1 class="steps__title">${currStepData.title}</h1>
 			</div>
-			<div class="steps__card" data-step="4">
-				<h1 class="steps__title">Metabolic Profile</h1>
-				<div class="factors">
-					<div class="factors__card factors__card--selected">
-						<h2 class="factors__title">Smoking</h2>
-					</div>
-					<div class="factors__card">
-						<h2 class="factors__title">Pregnancy</h2>
-					</div>
-					<div class="factors__card factors__card--selected">
-						<h2 class="factors__title">Contraceptives</h2>
-					</div>
-				</div>
-			</div>
-			<div class="steps__card" data-step="5">
-				<h2 class="steps__title">You're all set! Let's go</h2>
-			</div>`;
+		`;
 		return markup;
 	}
 }

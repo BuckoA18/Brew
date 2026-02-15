@@ -6,15 +6,15 @@ class Survey extends View {
 		return document.querySelector(".main-view");
 	}
 
-	addHandlerNavigateSurvey(handler) {
+	addHandlerSurveyNav(handler) {
 		const nextButton = document.querySelector(".survey__button--next");
 		nextButton.addEventListener("click", () => {
 			handler();
 		});
+		handler();
 	}
 
 	_generateMarkup() {
-		console.log();
 		const markup = html`
 			<main class="survey">
 				<div class="steps"></div>
