@@ -5,8 +5,8 @@ import { initialDrinks } from "./InitialDrinks";
 
 export const state = {
 	user: {
-		firstName: "",
 		weight: "",
+		age: "",
 		metabolism: "",
 		maxCaffeine: 400,
 		dailyDrinks: [],
@@ -28,8 +28,7 @@ export const state = {
 	},
 	survey: {
 		currentStep: 1,
-		maxSteps: 5,
-		data: {},
+		maxSteps: config.MAX_STEPS,
 	},
 	drinks: [],
 };
@@ -172,17 +171,7 @@ export const searchShortcuts = async (shortcutId) => {
 	}
 };
 
-export const setProfile = (data) => {
-	state.user.maxCaffeine = helper.calcMaxCaffeine(data.weight, 6);
-	state.user.firstName = data.firstName.trim();
-	state.user.weight = data.weight;
-	state.user.metabolism = data.metabolism;
-	state.user.bedtime = data.bedtime;
-	state.user.profileReady = true;
-
-	console.log("Succesfull validation");
-	console.log("Ready profile data:", state.user);
-};
+export const setProfile = () => {};
 
 export const checkDate = async () => {
 	try {

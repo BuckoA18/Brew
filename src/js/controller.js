@@ -70,12 +70,8 @@ const controllSurvey = async () => {
 		// Render
 		SurveyView.render();
 
-		// StepsView.render(cfg.SURVEY_SCHEMA, model.state.survey.currentStep);
-
 		// Handlers
 		SurveyView.addHandlerSurveyNav(handleSurveyNav);
-
-		// model.plusStep();
 	} catch (error) {
 		console.error(error);
 	}
@@ -83,6 +79,11 @@ const controllSurvey = async () => {
 
 const handleSurveyNav = async () => {
 	try {
+		const data = StepsView.getInputValues();
+		if (data) {
+			console.log(data);
+			await helper.validateSurvey(data);
+		}
 		// add +1 step before checking
 		model.plusStep();
 		console.log(model.state.survey.currentStep);
@@ -95,14 +96,16 @@ const handleSurveyNav = async () => {
 		// Render
 		StepsView.render(cfg.SURVEY_SCHEMA, model.state.survey.currentStep);
 
-		// call router to render step based on url
+		// Call router to render step based on url
 		window.history.pushState(
 			null,
 			null,
 			`/survey/step-${model.state.survey.currentStep}`,
 		);
 		controllRouter();
-	} catch (error) {}
+	} catch (error) {
+		console.error(error);
+	}
 };
 
 const handleToggleDrinkEdit = async (id) => {
@@ -139,20 +142,25 @@ const handleShortcuts = async (id) => {
 	try {
 		await model.searchShortcuts(id);
 		DrinksListView.render(model.state.search.results);
-	} catch (error) {}
+	} catch (error) {
+		console.error(error);
+	}
 };
 
 const controllRouter = () => {
+	// Sets variable path to the curent URL path
 	const path = window.location.pathname;
+	console.log(path);
+	// Checks if survey is open
 	if (path.startsWith("/survey/step-")) {
+		// Takes step from URL and sets it to state so its properly updated
 		const step = +path.split("-").pop();
 		model.state.survey.currentStep = step;
+
 		controllSurvey();
 		StepsView.render(cfg.SURVEY_SCHEMA, model.state.survey.currentStep);
 		return;
 	}
-
-	console.log(path);
 
 	switch (path) {
 		case "/welcome":
@@ -173,11 +181,14 @@ const init = async () => {
 	try {
 		await model.checkDate();
 		await model.setInitialState();
+
 		window.addEventListener("caffeineUpdated", () => {
 			CaffieneMonitorView.render(model.state);
 			CaffieneMonitorView.updateProgressBar(model.calcMonitorProgress());
 		});
+
 		window.history.pushState(null, null, "/welcome");
+
 		initRouter(controllRouter);
 		controllRouter();
 	} catch (error) {

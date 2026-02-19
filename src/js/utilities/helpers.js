@@ -16,28 +16,37 @@ export const calcMaxCaffeine = (weight, metabolism) => {
 	return max;
 };
 
-export const validate = async (data) => {
+export const validateSurvey = async (data) => {
 	try {
-		const firstName = data.firstName?.trim() || "";
-		const weight = Math.round(parseFloat(data.weight));
-
-		// Name checks
-		if (firstName.length === 0) throw new Error("Name can`t be empty");
-		if (firstName.length > VALIDATION_RULES.NAME_CHAR_CAP)
-			throw new Error(
-				`Name is too long, maximum is: ${VALIDATION_RULES.NAME_CHAR_CAP}`,
-			);
-
+		const { type, value } = data;
 		// Weight checks
-		if (data.weight < VALIDATION_RULES.WEIGHT.MIN)
-			throw new Error(
-				`Weight is too low, minimum is: ${VALIDATION_RULES.WEIGHT.MIN}`,
-			);
-		if (data.weight > VALIDATION_RULES.WEIGHT.MAX)
-			throw new Error(
-				`Weight is too high, maximum is: ${VALIDATION_RULES.WEIGHT.MAX}`,
-			);
-		setProfile({ ...data, firstName, weight });
+		if (type === "weight") {
+			const weight = Math.round(parseFloat(value));
+			if (weight < VALIDATION_RULES.WEIGHT.MIN)
+				throw new Error(
+					`Weight is too low or empty, minimum is: ${VALIDATION_RULES.WEIGHT.MIN}`,
+				);
+			if (weight > VALIDATION_RULES.WEIGHT.MAX)
+				throw new Error(
+					`Weight is too high, maximum is: ${VALIDATION_RULES.WEIGHT.MAX}`,
+				);
+			console.log("VALIDATION SUCCESFULL");
+			return;
+		}
+
+		if (type === "age") {
+			const age = Math.round(parseFloat(value));
+			if (age < VALIDATION_RULES.AGE.MIN)
+				throw new Error(
+					`Age is too low or empty, minimum is: ${VALIDATION_RULES.AGE.MIN}`,
+				);
+			if (age > VALIDATION_RULES.AGE.MAX)
+				throw new Error(
+					`Age is too high, maximum is: ${VALIDATION_RULES.AGE.MAX}`,
+				);
+			console.log("VALIDATION SUCCESFULL");
+			return;
+		}
 	} catch (error) {
 		throw error;
 	}

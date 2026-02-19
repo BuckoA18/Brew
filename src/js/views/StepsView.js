@@ -8,9 +8,9 @@ class StepsView extends View {
 
 	_generateFactorsMarkup(data) {
 		const markup = data
-			.map((option) => {
+			.map((multiplier) => {
 				return html` <div class="factors__card ">
-					<h2 class="factors__title">${option}</h2>
+					<h2 class="factors__title">${multiplier.name}</h2>
 				</div>`;
 			})
 			.join("");
@@ -18,14 +18,23 @@ class StepsView extends View {
 		return markup;
 	}
 
+	getInputValues() {
+		const input = this._parentElement.querySelector(".steps__input");
+		if (!input) return;
+
+		const value = +input.value;
+		const type = input.id;
+		return { type, value };
+	}
+
 	_generateMarkup(schema, currentStep) {
 		const currStepData = schema.find((step) => step.step === currentStep);
 
-		if (currStepData.options) {
+		if (currStepData.multipliers) {
 			const markup = html`
 			<div class="steps__card data-step="${currStepData.id}">
 				<h1 class="steps__title">${currStepData.title}</h1>
-				 <div class="factors">${this._generateFactorsMarkup(currStepData.options)}</div>
+				 <div class="factors">${this._generateFactorsMarkup(currStepData.multipliers)}</div>
 				
 			</div>
 			`;
