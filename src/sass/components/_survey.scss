@@ -3,6 +3,7 @@
 @use "../abstracts/variables" as v;
 
 .survey {
+	// filter: blur(1rem);
 	background-color: map.get(v.$colors, "bg-primary");
 	height: 100%;
 	display: flex;

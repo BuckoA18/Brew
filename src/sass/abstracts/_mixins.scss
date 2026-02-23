@@ -1,10 +1,13 @@
 @use "sass:map";
 @use "../abstracts/variables" as v;
 
-@mixin card {
+@mixin card(
+	$background-color: map.get(v.$colors, "bg-secondary"),
+	$color: map.get(v.$colors, "text-primary")
+) {
 	width: 100%;
-
-	background-color: map.get(v.$colors, "bg-secondary");
+	background-color: $background-color;
+	color: $color;
 	border-radius: map.get(v.$border-radius, "sm");
 	padding: map.get(v.$spacings, "md");
 	box-shadow: 0 4px 12px rgba(30, 20, 0, 0.05);
@@ -26,6 +29,16 @@
 	width: 100%;
 	background-color: map.get(v.$colors, "primary");
 	color: black;
+	border-radius: map.get(v.$border-radius, "md");
+	font-size: 1rem;
+}
+
+@mixin button($background-color, $color) {
+	border: none;
+	padding: 1.4rem;
+	width: 100%;
+	background-color: $background-color;
+	color: $color;
 	border-radius: map.get(v.$border-radius, "md");
 	font-size: 1rem;
 }
