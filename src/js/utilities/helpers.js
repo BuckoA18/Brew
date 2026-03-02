@@ -41,7 +41,7 @@ export const validateSurvey = async (data) => {
 		if (numericValue > rules.MAX) {
 			throw {
 				type: "VALIDATION_ERROR",
-				message: `Your ${type} must be smaller then ${rules.MIN}`,
+				message: `Your ${type} must be smaller then ${rules.MAX}`,
 			};
 		}
 	} catch (error) {

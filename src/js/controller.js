@@ -15,6 +15,7 @@ import DrinkEditorView from "./views/DrinkEditorView";
 import WelcomeView from "./views/WelcomeView";
 import SurveyView from "./views/SurveyView";
 import StepsView from "./views/StepsView";
+import ErrorView from "./views/ErrorView";
 
 const controllDashboard = async () => {
 	try {
@@ -104,8 +105,13 @@ const handleSurveyNav = async () => {
 		);
 		controllRouter();
 	} catch (error) {
-		StepsView.renderError(error);
+		ErrorView.renderError(error);
+		ErrorView.addHandlerCloseError(handleCloseError);
 	}
+};
+
+const handleCloseError = () => {
+	ErrorView.closeError();
 };
 
 const handleToggleDrinkEdit = async (id) => {

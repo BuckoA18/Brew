@@ -17,20 +17,14 @@ class View {
 		);
 	}
 
-	renderError(error) {
-		console.log(error);
-		const markup = html`
-			<div class="error">
-				<div class="error__container">
-					<img src="/images/mark.png" alt="alert" class="error__img" />
-					<h1 class="error__title">${error.code ? error.code : "Error"}</h1>
-					<p class="error__description">${error.message}</p>
-					<button class="error__button">Ok</button>
-				</div>
-			</div>
-		`;
+	renderError(data) {
+		const parentElement = this._parentElement;
+		if (!parentElement) return;
 
-		this._parentElement.insertAdjacentHTML("afterbegin", markup);
+		this._parentElement.insertAdjacentHTML(
+			"afterbegin",
+			this._generateMarkup(data),
+		);
 	}
 
 	clear() {
