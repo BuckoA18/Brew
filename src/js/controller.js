@@ -103,7 +103,9 @@ const handleSurveyNav = async () => {
 			`/survey/step-${model.state.survey.currentStep}`,
 		);
 		controllRouter();
-	} catch (error) {}
+	} catch (error) {
+		StepsView.renderError(error);
+	}
 };
 
 const handleToggleDrinkEdit = async (id) => {

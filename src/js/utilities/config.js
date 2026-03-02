@@ -11,7 +11,6 @@ export const VALIDATION_RULES = {
 		MIN: 30,
 		MAX: 300,
 	},
-	NAME_CHAR_CAP: 30,
 };
 
 export const SURVEY_SCHEMA = [

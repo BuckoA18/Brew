@@ -19,33 +19,30 @@ export const calcMaxCaffeine = (weight, metabolism) => {
 export const validateSurvey = async (data) => {
 	try {
 		const { type, value } = data;
-		// Weight checks
-		if (type === "weight") {
-			const weight = Math.round(parseFloat(value));
-			if (weight < VALIDATION_RULES.WEIGHT.MIN)
-				throw new Error(
-					`Weight is too low or empty, minimum is: ${VALIDATION_RULES.WEIGHT.MIN}`,
-				);
-			if (weight > VALIDATION_RULES.WEIGHT.MAX)
-				throw new Error(
-					`Weight is too high, maximum is: ${VALIDATION_RULES.WEIGHT.MAX}`,
-				);
-			console.log("VALIDATION SUCCESFULL");
-			return;
+		const rules = VALIDATION_RULES[type.toUpperCase()];
+		const numericValue = Math.round(parseFloat(value));
+
+		if (!rules) throw new Error(`Unknown validation type: ${type}`);
+
+		if (isNaN(numericValue)) {
+			throw {
+				type: "VALIDATION_ERROR",
+				message: `${type} Must be an number`,
+			};
 		}
 
-		if (type === "age") {
-			const age = Math.round(parseFloat(value));
-			if (age < VALIDATION_RULES.AGE.MIN)
-				throw new Error(
-					`Age is too low or empty, minimum is: ${VALIDATION_RULES.AGE.MIN}`,
-				);
-			if (age > VALIDATION_RULES.AGE.MAX)
-				throw new Error(
-					`Age is too high, maximum is: ${VALIDATION_RULES.AGE.MAX}`,
-				);
-			console.log("VALIDATION SUCCESFULL");
-			return;
+		if (numericValue < rules.MIN) {
+			throw {
+				type: "VALIDATION_ERROR",
+				message: `Your ${type} must be bigger then ${rules.MIN}`,
+			};
+		}
+
+		if (numericValue > rules.MAX) {
+			throw {
+				type: "VALIDATION_ERROR",
+				message: `Your ${type} must be smaller then ${rules.MIN}`,
+			};
 		}
 	} catch (error) {
 		throw error;

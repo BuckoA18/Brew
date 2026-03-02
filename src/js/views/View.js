@@ -22,12 +22,9 @@ class View {
 		const markup = html`
 			<div class="error">
 				<div class="error__container">
-					<img src="./public/images/mark.png" alt="alert" class="error__img" />
-					<h1 class="error__title">400 - Bad Request</h1>
-
-					<p class="error__description">
-						Weight is too low or empty, minimum is: 30kg
-					</p>
+					<img src="/images/mark.png" alt="alert" class="error__img" />
+					<h1 class="error__title">${error.code ? error.code : "Error"}</h1>
+					<p class="error__description">${error.message}</p>
 					<button class="error__button">Ok</button>
 				</div>
 			</div>
