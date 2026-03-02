@@ -70,7 +70,6 @@ const controllSurvey = async () => {
 	try {
 		// Render
 		SurveyView.render();
-
 		// Handlers
 		SurveyView.addHandlerSurveyNav(handleSurveyNav);
 	} catch (error) {
@@ -112,6 +111,10 @@ const handleSurveyNav = async () => {
 
 const handleCloseError = () => {
 	ErrorView.closeError();
+};
+
+const handleMultipliers = (value) => {
+	console.log(value);
 };
 
 const handleToggleDrinkEdit = async (id) => {
@@ -162,9 +165,10 @@ const controllRouter = () => {
 		// Takes step from URL and sets it to state so its properly updated
 		const step = +path.split("-").pop();
 		model.state.survey.currentStep = step;
-
+		// Renders survey
 		controllSurvey();
 		StepsView.render(cfg.SURVEY_SCHEMA, model.state.survey.currentStep);
+		StepsView.addHandlerSelectMultipliers(handleMultipliers);
 		return;
 	}
 

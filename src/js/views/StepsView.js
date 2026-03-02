@@ -6,18 +6,6 @@ class StepsView extends View {
 		return document.querySelector(".steps");
 	}
 
-	_generateFactorsMarkup(data) {
-		const markup = data
-			.map((multiplier) => {
-				return html` <div class="factors__card ">
-					<h2 class="factors__title">${multiplier.name}</h2>
-				</div>`;
-			})
-			.join("");
-
-		return markup;
-	}
-
 	getInputValues() {
 		const input = this._parentElement.querySelector(".steps__input");
 		if (!input) return;
@@ -27,6 +15,37 @@ class StepsView extends View {
 		return { type, value };
 	}
 
+	addHandlerSelectMultipliers(handler) {
+		this._parentElement.addEventListener("click", (e) => {
+			const card = e.target.closest(".multiplier__card");
+			if (!card) return;
+
+			card.classList.toggle("multiplier__card--selected");
+
+			const selectedCards = Array.from(
+				this._parentElement.querySelectorAll(".multiplier__card--selected"),
+			);
+
+			const values = selectedCards.map((card) => card.dataset.multiplier);
+			handler(values);
+		});
+	}
+
+	_generateMultipliersMarkup(data) {
+		const markup = data
+			.map((multiplier) => {
+				return html` <div
+					class="multiplier__card"
+					data-multiplier=${multiplier.multiplier}
+				>
+					<h2 class="multiplier__title">${multiplier.name}</h2>
+				</div>`;
+			})
+			.join("");
+
+		return markup;
+	}
+
 	_generateMarkup(schema, currentStep) {
 		const currStepData = schema.find((step) => step.step === currentStep);
 
@@ -34,7 +53,7 @@ class StepsView extends View {
 			const markup = html`
 			<div class="steps__card data-step="${currStepData.id}">
 				<h1 class="steps__title">${currStepData.title}</h1>
-				 <div class="factors">${this._generateFactorsMarkup(currStepData.multipliers)}</div>
+				 <div class="multipliers">${this._generateMultipliersMarkup(currStepData.multipliers)}</div>
 				
 			</div>
 			`;
