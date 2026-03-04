@@ -76,24 +76,34 @@ const controllSurvey = async () => {
 	}
 };
 
-const handleSurveyNav = () => {
-	// Get the current step from state
-	const { currentStep, maxSteps } = model.state.survey;
-	// After last step go to dashboard
-	if (currentStep > maxSteps) {
-		window.history.pushState(null, "", "/");
-		controllRouter();
-		return;
+const handleSurveyNav = async (inputValue) => {
+	try {
+		if (inputValue) {
+			await helper.validateSurvey(inputValue);
+			return;
+		}
+
+		// Get the current step from state
+		const { currentStep, maxSteps } = model.state.survey;
+		// After last step go to dashboard
+		if (currentStep > maxSteps) {
+			window.history.pushState(null, "", "/");
+			controllRouter();
+			return;
+		}
+		// Prep data, add lastStep property
+		const viewData = {
+			...config.SURVEY_SCHEMA[currentStep - 1],
+			isLastStep: currentStep === maxSteps,
+		};
+		// Render step markup based on given step
+		StepsView.render(viewData);
+		// update state
+		model.plusStep();
+	} catch (error) {
+		ErrorView.renderError(error);
+		ErrorView.addHandlerCloseError(handleCloseError);
 	}
-	// Prep data, add lastStep property
-	const viewData = {
-		...config.SURVEY_SCHEMA[currentStep - 1],
-		isLastStep: currentStep === maxSteps,
-	};
-	// Render step markup based on given step
-	StepsView.render(viewData);
-	// update state
-	model.plusStep();
 };
 
 const handleCloseError = () => {

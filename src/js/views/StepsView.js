@@ -7,8 +7,15 @@ class StepsView extends View {
 		return document.querySelector(".steps");
 	}
 
-	_generateInputMarkup(inputType) {
-		const markup = html`<input class="steps__input" type=${inputType} />`;
+	getInputValues() {}
+
+	_generateInputMarkup(data) {
+		const markup = html`<input
+			class="steps__input"
+			type=${data.input}
+			id=${data.id}
+			name="${data.id}"
+		/>`;
 		return markup;
 	}
 
@@ -29,7 +36,7 @@ class StepsView extends View {
 		console.log(data);
 		const markup = html`<div class="steps__card">
 				<h1 class="steps__title">${data.title}</h1>
-				${data.input ? this._generateInputMarkup(data.input) : ""}
+				${data.input ? this._generateInputMarkup(data) : ""}
 				${data.multipliers
 					? this._generateMultipliersMarkup(data.multipliers)
 					: ""}

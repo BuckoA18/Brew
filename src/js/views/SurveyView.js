@@ -18,10 +18,22 @@ class Survey extends View {
 	addHandlerSurveyNav(handler) {
 		this._parentElement
 			.querySelector(".steps")
-			.addEventListener("click", (e) => {
-				const nextButton = e.target.closest(".steps__button");
+			.addEventListener("submit", (e) => {
+				e.preventDefault();
+
+				const nextButton = this._parentElement.querySelector(".steps__button");
 				if (!nextButton) return;
-				console.log(nextButton);
+
+				const input = e.target.querySelector(".steps__input");
+
+				if (input) {
+					const type = input.name;
+					const formData = new FormData(e.target);
+					const value = +formData.get(name);
+					console.log(value);
+					return handler({ type, value });
+				}
+
 				handler();
 			});
 		handler();
