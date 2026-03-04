@@ -80,7 +80,6 @@ const handleSurveyNav = async (inputValue) => {
 	try {
 		if (inputValue) {
 			await helper.validateSurvey(inputValue);
-			return;
 		}
 
 		// Get the current step from state

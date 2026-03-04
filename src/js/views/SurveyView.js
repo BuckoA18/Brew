@@ -29,8 +29,8 @@ class Survey extends View {
 				if (input) {
 					const type = input.name;
 					const formData = new FormData(e.target);
-					const value = +formData.get(name);
-					console.log(value);
+					const value = +formData.get(type);
+
 					return handler({ type, value });
 				}
 
