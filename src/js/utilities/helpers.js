@@ -70,9 +70,9 @@ export const calcCaffeine = () => {
 
 export const getMultiplierValue = (values) => {
 	// Get result by multiplying selected multipliers
-	const valuesArray = values;
-	if (valuesArray.length <= 0) return 1;
-	const multiplier = valuesArray.reduce(
+	const basicValue = 1;
+	if (values.length <= 0) return basicValue; // return basic value = 1 if no multipliers selected
+	const multiplier = values.reduce(
 		(accumulator, currentValue) => accumulator * currentValue,
 	);
 

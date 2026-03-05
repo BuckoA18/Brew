@@ -208,7 +208,7 @@ export const getDrinkData = async (drinkId) => {
 	}
 };
 
-export const plusStep = async () => {
+export const nextStep = async () => {
 	state.survey.currentStep++;
 };
 

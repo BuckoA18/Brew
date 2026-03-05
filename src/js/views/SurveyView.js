@@ -14,6 +14,23 @@ class Survey extends View {
 		`;
 		return markup;
 	}
+	addHandlerHandleMultipliers(handler) {
+		this._parentElement
+			.querySelector(".steps")
+			.addEventListener("click", (e) => {
+				const multiplierCard = e.target.closest(".multiplier__card");
+				if (!multiplierCard) return;
+
+				multiplierCard.classList.toggle("multiplier__card--selected");
+
+				const values = Array.from(
+					this._parentElement.querySelectorAll(".multiplier__card--selected"),
+				).map((multiplier) => +multiplier.dataset.multiplier);
+
+				// console.log(multipliers);
+				handler(values);
+			});
+	}
 
 	addHandlerSurveyNav(handler) {
 		this._parentElement
@@ -25,6 +42,7 @@ class Survey extends View {
 				if (!nextButton) return;
 
 				const input = e.target.querySelector(".steps__input");
+				// const multipliers = e.target.querySelector(".multipliers");
 
 				if (input) {
 					const type = input.name;
@@ -33,6 +51,11 @@ class Survey extends View {
 
 					return handler({ type, value });
 				}
+
+				// if (multipliers) {
+				// 	console.log(multipliers);
+				// 	return handler();
+				// }
 
 				handler();
 			});

@@ -7,8 +7,6 @@ class StepsView extends View {
 		return document.querySelector(".steps");
 	}
 
-	getInputValues() {}
-
 	_generateInputMarkup(data) {
 		const markup = html`<input
 			class="steps__input"
@@ -19,11 +17,15 @@ class StepsView extends View {
 		return markup;
 	}
 
-	_generateMultipliersMarkup(multipliers) {
+	_generateMultipliersMarkup(data) {
 		const markup = html`<ul class="multipliers">
-			${multipliers
+			${data.multipliers
 				.map((multiplier) => {
-					return html`<li class="multiplier__card">
+					console.log(multiplier);
+					return html`<li
+						class="multiplier__card"
+						data-multiplier=${multiplier.multiplier}
+					>
 						<span>${multiplier.name}</span>
 					</li>`;
 				})
@@ -37,9 +39,7 @@ class StepsView extends View {
 		const markup = html`<div class="steps__card">
 				<h1 class="steps__title">${data.title}</h1>
 				${data.input ? this._generateInputMarkup(data) : ""}
-				${data.multipliers
-					? this._generateMultipliersMarkup(data.multipliers)
-					: ""}
+				${data.multipliers ? this._generateMultipliersMarkup(data) : ""}
 			</div>
 			<button class="steps__button">
 				${data.isLastStep ? "Finish" : "Next"}

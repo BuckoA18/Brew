@@ -37,6 +37,8 @@ const controllDashboard = async () => {
 	}
 };
 
+// ---- LOG DRINK ---- //
+
 const controllLogDrink = async () => {
 	try {
 		// Render strucure
@@ -55,58 +57,6 @@ const controllLogDrink = async () => {
 	} catch (error) {
 		console.error(error);
 	}
-};
-
-const controllWelcome = async () => {
-	try {
-		WelcomeView.render();
-	} catch (error) {
-		console.error(error);
-	}
-};
-
-const controllSurvey = async () => {
-	try {
-		// Render shell
-		SurveyView.render();
-		// Attach handler and imidietly call it
-		SurveyView.addHandlerSurveyNav(handleSurveyNav);
-	} catch (error) {
-		console.error(error);
-	}
-};
-
-const handleSurveyNav = async (inputValue) => {
-	try {
-		if (inputValue) {
-			await helper.validateSurvey(inputValue);
-		}
-
-		// Get the current step from state
-		const { currentStep, maxSteps } = model.state.survey;
-		// After last step go to dashboard
-		if (currentStep > maxSteps) {
-			window.history.pushState(null, "", "/");
-			controllRouter();
-			return;
-		}
-		// Prep data, add lastStep property
-		const viewData = {
-			...config.SURVEY_SCHEMA[currentStep - 1],
-			isLastStep: currentStep === maxSteps,
-		};
-		// Render step markup based on given step
-		StepsView.render(viewData);
-		// update state
-		model.plusStep();
-	} catch (error) {
-		ErrorView.renderError(error);
-		ErrorView.addHandlerCloseError(handleCloseError);
-	}
-};
-
-const handleCloseError = () => {
-	ErrorView.closeError();
 };
 
 const handleToggleDrinkEdit = async (id) => {
@@ -148,6 +98,78 @@ const handleShortcuts = async (id) => {
 	}
 };
 
+// ---- WELCOME ---- //
+
+const controllWelcome = async () => {
+	try {
+		WelcomeView.render();
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+// ---- SURVEY ---- //
+
+const controllSurvey = async () => {
+	try {
+		// Render shell
+		SurveyView.render();
+		// Attach handlers
+		SurveyView.addHandlerSurveyNav(handleSurveyNav);
+		SurveyView.addHandlerHandleMultipliers(handleMultipliers);
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+const handleSurveyNav = async (inputValue) => {
+	try {
+		// Get the current step from state
+		const { currentStep, maxSteps } = model.state.survey;
+
+		if (inputValue) {
+			const { type, value } = inputValue;
+			// Validate user input
+			await helper.validateSurvey(inputValue);
+			model.state.user[type] = value;
+		}
+
+		if (currentStep > maxSteps) {
+			// Navigate to dashboard
+			window.history.pushState(null, "", "/");
+			controllRouter();
+			return;
+		}
+		// Prep data, add lastStep property
+		const viewData = {
+			...config.SURVEY_SCHEMA[currentStep - 1],
+			isLastStep: currentStep === maxSteps,
+		};
+		// Render step markup based on given step
+		StepsView.render(viewData);
+		// update state
+		model.nextStep();
+	} catch (error) {
+		console.error(error);
+		// need to rework error handling!!!
+		// maybe red button that wiggles? red border on input and small text ?
+		// ErrorView.renderError(error);
+		// ErrorView.addHandlerCloseError(handleCloseError);
+	}
+};
+
+const handleMultipliers = async (values) => {
+	if (!values) return;
+	const halfLifeMultiplier = await helper.getMultiplierValue(values);
+	model.state.user.halfLifeMultiplier = halfLifeMultiplier;
+};
+
+const handleCloseError = () => {
+	ErrorView.closeError();
+};
+
+// ---- ROUTER ---- //
+
 const controllRouter = () => {
 	// Sets variable path to the curent URL path
 	const path = window.location.pathname;
@@ -181,6 +203,8 @@ const controllRouter = () => {
 			console.error("404: Page not found");
 	}
 };
+
+// ---- INIT ---- //
 
 const init = async () => {
 	try {
