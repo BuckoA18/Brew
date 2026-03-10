@@ -2,7 +2,8 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
-.login {
+.welcome {
+	padding: map.get(v.$spacings, "md");
 	width: 100%;
 	flex: 1;
 	display: flex;
@@ -41,7 +42,7 @@
 		position: relative;
 
 		&--start {
-			@include mix.button-save;
+			@include mix.button(map.get(v.$colors, "primary"), #fff);
 		}
 	}
 }

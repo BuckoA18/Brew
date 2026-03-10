@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @use "../abstracts/variables" as v;
 
 @mixin card(
@@ -23,24 +24,17 @@
 	font-size: 1rem;
 }
 
-@mixin button-next {
-	border: none;
-	padding: 1.4rem;
-	width: 100%;
-	background-color: map.get(v.$colors, "primary");
-	color: black;
-	border-radius: map.get(v.$border-radius, "md");
-	font-size: 1rem;
-}
-
 @mixin button($background-color, $color) {
+	font-weight: 600;
+	font-size: 1.4rem;
 	border: none;
-	padding: 1.4rem;
+	padding: 1.2rem;
 	width: 100%;
 	background-color: $background-color;
 	color: $color;
-	border-radius: map.get(v.$border-radius, "md");
-	font-size: 1rem;
+	box-shadow: 0 2px 8px
+		color.adjust($background-color, $lightness: -20%, $saturation: 10%);
+	border-radius: 50px;
 }
 
 @mixin input {

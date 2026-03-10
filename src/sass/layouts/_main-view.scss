@@ -4,8 +4,6 @@
 
 .main-view {
 	height: 100dvh;
-	padding: map.get(v.$spacings, "md");
-
 	display: flex;
 	flex-direction: column;
 }

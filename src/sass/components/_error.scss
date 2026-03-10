@@ -2,41 +2,14 @@
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
-// .error {
-// 	position: fixed;
-// 	top: 50%;
-// 	left: 50%;
-// 	transform: translate(-50%, -50%);
-// 	z-index: 9999;
-// 	width: 90%;
-
-// 	&__container {
-// 		@include mix.card;
-// 		display: flex;
-// 		justify-content: center;
-// 		align-items: center;
-// 		flex-direction: column;
-// 		gap: 1rem;
-// 		background-color: #fef2f2;
-// 		border: 1px solid #fee2e2;
-// 	}
-
-// 	&__title {
-// 		margin-bottom: map.get(v.$spacings, "sm");
-// 		text-align: center;
-// 	}
-
-// 	&__description {
-// 		margin-bottom: map.get(v.$spacings, "sm");
-// 		text-align: center;
-// 	}
-
-// 	&__button {
-// 		@include mix.button(#ef4444, #ffffff);
-// 	}
-
-// 	&__img {
-// 		width: 50px;
-// 		height: 50px;
-// 	}
-// }
+.error {
+	width: 100%;
+	text-align: center;
+	background-color: map.get(v.$colors, "bg-error");
+	border-bottom: 2px solid #fee2e2;
+	padding: 2rem 2rem;
+	box-shadow: 0 4px 12px map.get(v.$colors, "bg-error");
+	&__description {
+		font-weight: 500;
+	}
+}

@@ -14,12 +14,27 @@ class StepsView extends View {
 	}
 
 	_generateInputMarkup(data, error) {
+		const isWeight = data.id === "weight";
+		console.log(data);
 		const markup = html`<input
-			class="steps__input ${error ? "steps__input--error" : ""}"
-			type=${data.input}
-			id=${data.id}
-			name="${data.id}"
-		/>`;
+				class="steps__input ${error ? "steps__input--error" : ""}"
+				type=${data.input}
+				id=${data.id}
+				name="${data.id}"
+			/>
+
+			${isWeight
+				? html` <div class="steps__toggle">
+						<label class="steps__toggle-option">
+							<input type="radio" name="weight-unit" value="kg" checked />
+							<span>kg</span>
+						</label>
+						<label class="steps__toggle-option">
+							<input type="radio" name="weight-unit" value="lbs" />
+							<span>lbs</span>
+						</label>
+					</div>`
+				: ""}`;
 		return markup;
 	}
 
@@ -55,11 +70,8 @@ class StepsView extends View {
 	_generateErrorMarkup(error) {
 		console.log(error);
 		const markup = html`
-			<div class="error">
-				<div class="error__container">
-					<p class="error__description">${error.message}</p>
-					<button class="error__button">X</button>
-				</div>
+			<div class="error steps__error">
+				<p class="error__description">${error.message}</p>
 			</div>
 		`;
 		return markup;

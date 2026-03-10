@@ -8,22 +8,28 @@ class Welcome extends View {
 
 	_generateMarkup() {
 		const markup = html`
-			<main class="login">
+			<main class="welcome">
 				<img
 					src="/images/undraw_coffee-with-friends_ocg2 (1).svg"
 					alt="Friends sharing coffee"
-					class="login__image"
+					class="welcome__image"
 				/>
-				<div class="login__container">
-					<div class="login__group login__group--info">
-						<h1 class="login__title">Welcome to Brew</h1>
-						<p class="login__description">Caffeine tracking made simple</p>
+				<div class="welcome__container">
+					<div class="welcome__group welcome__group--info">
+						<h1 class="welcome__title">Welcome to Brew</h1>
+						<p class="welcome__description">Caffeine tracking made simple</p>
 					</div>
-					<div class="login__group login__group--actions">
-						<a href="/survey" data-link class="login__link login__link--start"
+					<div class="welcome__group welcome__group--actions">
+						<a
+							href="/survey"
+							data-link
+							class="welcome__link welcome__link--start"
 							>Get Started</a
 						>
-						<a href="/" data-link class="login__link login__link--skip subtle"
+						<a
+							href="/"
+							data-link
+							class="welcome__link welcome__link--skip subtle"
 							>Skip</a
 						>
 					</div>

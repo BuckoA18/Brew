@@ -1,21 +1,22 @@
+@use "sass:color";
 @use "sass:map";
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
 .steps {
-	flex: 1;
+	padding: map.get(v.$spacings, "md");
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
 	&__card {
-		height: 100%;
+		flex: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 
 		gap: 2rem;
-
-		&--hidden {
-			display: none;
-		}
 	}
 
 	&__title {
@@ -31,13 +32,56 @@
 		border: none;
 		box-shadow: 3px 8px 15px rgba(30, 20, 0, 0.05);
 
-		&--error {
-			outline-color: red;
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 0 4px
+				color.adjust(map.get(v.$colors, "primary"), $alpha: -0.5);
 		}
 	}
 
 	&__button {
 		margin-top: auto;
-		@include mix.button-next;
+		@include mix.button(map.get(v.$colors, "primary"), #fff);
+	}
+
+	&__error {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+	&__toggle {
+		display: flex;
+		background-color: map.get(v.$colors, "bg-secondary");
+		width: 140px;
+		height: 50px;
+		border-radius: 50px;
+		padding: 0.3rem;
+		box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.05);
+		position: relative;
+		margin-top: 1rem;
+
+		&-option {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 2;
+			font-weight: 700;
+			font-size: 1.1rem;
+			color: map.get(v.$colors, "text-secondary");
+			transition: color 0.3s ease;
+
+			input {
+				display: none;
+			}
+
+			&:has(input:checked) {
+				color: map.get(v.$colors, "text-primary");
+				background-color: #fff;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			}
+		}
 	}
 }
