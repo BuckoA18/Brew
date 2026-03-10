@@ -39,17 +39,24 @@ class StepsView extends View {
 	}
 
 	_generateMultipliersMarkup(data) {
-		const markup = html`<ul class="multipliers">
+		const markup = html` <ul class="multipliers">
 			${data.multipliers
-				.map((multiplier) => {
-					console.log(multiplier);
-					return html`<li
-						class="multiplier__card"
-						data-multiplier=${multiplier.multiplier}
-					>
-						<span>${multiplier.name}</span>
-					</li>`;
-				})
+				.map(
+					(multiplier) => html`
+						<li
+							class="multiplier__card"
+							data-multiplier="${multiplier.multiplier}"
+						>
+							<div class="multiplier__content">
+								<span class="multiplier__label">${multiplier.name}</span>
+								<span class="multiplier__description"
+									>${multiplier.description}</span
+								>
+							</div>
+							<div class="multiplier__badge">${multiplier.multiplier}x</div>
+						</li>
+					`,
+				)
 				.join("")}
 		</ul>`;
 		return markup;

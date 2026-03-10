@@ -33,7 +33,7 @@ export const SURVEY_SCHEMA = [
 		title: "How old are you?",
 	},
 	{
-		id: "factors",
+		id: "multipliers",
 		step: 4,
 		title: "Metabolic Profile",
 		multipliers: [
@@ -42,21 +42,21 @@ export const SURVEY_SCHEMA = [
 				name: "Smoking",
 				multiplier: 0.5,
 				description:
-					"Smoking triggers liver enzymes ($CYP1A2$) that break down caffeine twice as fast as normal. This rapid metabolism often leads smokers to double their coffee intake to maintain the same effect.",
+					"Triggers enzymes that process caffeine twice as fast. You likely need more coffee to feel the same effect.",
 			},
 			{
 				id: "pregnancy",
 				name: "Pregnancy",
 				multiplier: 3,
 				description:
-					"Hormonal changes during pregnancy drastically slow caffeine clearance. By the third trimester, caffeine stays in the system three times longer than usual, extending its half-life from 5 hours to nearly 15.",
+					"Drastically slows clearance. By the third trimester, caffeine stays in your system three times longer.",
 			},
 			{
 				id: "contraceptives",
 				name: "Contraceptives",
 				multiplier: 1.5,
 				description:
-					"Oral contraceptives inhibit the enzymes responsible for processing stimulants. This effectively doubles the half-life of caffeine, making a single cup of coffee feel twice as potent and stay in the bloodstream much longer.",
+					"Reduces enzyme activity, effectively doubling caffeine's half-life and making its effects last much longer.",
 			},
 		],
 	},

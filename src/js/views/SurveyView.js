@@ -19,6 +19,7 @@ class Survey extends View {
 			.querySelector(".steps")
 			.addEventListener("click", (e) => {
 				const multiplierCard = e.target.closest(".multiplier__card");
+				console.log(multiplierCard);
 				if (!multiplierCard) return;
 
 				multiplierCard.classList.toggle("multiplier__card--selected");
