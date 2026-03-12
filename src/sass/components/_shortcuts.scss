@@ -1,11 +1,12 @@
 @use "sass:map";
+@use "sass:color";
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
 .shortcuts {
 	width: 100%;
 	// margin-bottom: map.get(v.$spacings, "lg");
-	padding-bottom: 1rem;
+	padding: 0.2rem 0.2rem 1rem 0.2rem;
 	overflow-y: hidden;
 	overflow-x: scroll;
 	white-space: nowrap;
@@ -19,8 +20,10 @@
 		border: none;
 		border-radius: map.get(v.$border-radius, "md");
 
+		transition: all 0.2s ease;
+
 		&--active {
-			background-color: map.get(v.$colors, "primary");
+			@include mix.focus-ring();
 		}
 	}
 }

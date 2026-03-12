@@ -24,7 +24,7 @@ class DrinksListView extends View {
 							<i class="fa-solid fa-mug-hot fa-xl"></i>
 						</div>
 						<div class="drink-card__details">
-							<span class="drink-card__details-name">${drink.name}</span>
+							<span class="drink-card__details-title">${drink.name}</span>
 							<span class="drink-card__details-amount subtle"
 								>${drink.volume_ml} ml</span
 							>

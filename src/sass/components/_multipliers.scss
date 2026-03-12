@@ -30,11 +30,7 @@
 		}
 
 		&--selected {
-			background-color: color.adjust(
-				map.get(v.$colors, "primary"),
-				$lightness: 42%
-			);
-			outline: 2px solid map.get(v.$colors, "primary");
+			@include mix.focus-ring();
 		}
 	}
 

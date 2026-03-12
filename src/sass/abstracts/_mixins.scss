@@ -2,6 +2,15 @@
 @use "sass:color";
 @use "../abstracts/variables" as v;
 
+@mixin focus-ring {
+	background-color: color.adjust(
+		map.get(v.$colors, "primary"),
+		$lightness: 42%
+	);
+	outline: 2px solid map.get(v.$colors, "primary");
+	transform: scale(0.98);
+}
+
 @mixin card(
 	$background-color: map.get(v.$colors, "bg-secondary"),
 	$color: map.get(v.$colors, "text-primary")

@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:color";
 @use "../abstracts/mixins" as mix;
 @use "../abstracts/variables" as v;
 
@@ -13,10 +14,11 @@
 	border-radius: map.get(v.$border-radius, "md");
 	margin-bottom: map.get(v.$spacings, "sm");
 	box-shadow: 0 4px 12px rgba(30, 20, 0, 0.05);
-	border: 1px solid transparent;
+	border: none;
+	transition: all 0.1s ease;
 
 	&:focus-within {
-		border: 1px solid map.get(v.$colors, "primary");
+		@include mix.focus-ring();
 	}
 
 	&__input {

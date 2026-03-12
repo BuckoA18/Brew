@@ -34,9 +34,7 @@
 		box-shadow: 3px 8px 15px rgba(30, 20, 0, 0.05);
 
 		&:focus {
-			outline: none;
-			box-shadow: 0 0 0 4px
-				color.adjust(map.get(v.$colors, "primary"), $alpha: -0.5);
+			@include mix.focus-ring();
 		}
 	}
 
