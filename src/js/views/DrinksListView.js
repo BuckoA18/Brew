@@ -16,7 +16,10 @@ class DrinksListView extends View {
 	}
 
 	_generateMarkup() {
-		const markup = this._data
+		const results = this._data;
+
+		console.log(results);
+		const markup = results
 			.map((drink) => {
 				return html`
 					<li class="drink-card" data-id="${drink.id}">

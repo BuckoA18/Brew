@@ -9,11 +9,9 @@ import DrinkEditorView from "../views/DrinkEditorView";
 export const controllLogDrink = async () => {
 	try {
 		// Render strucure
-		await model.searchShortcuts();
-		LogDrinkView.render(model.state);
-		SearchBarView.render();
-		SearchShortcutsView.render(model.state.search.shortcuts);
-		DrinksListView.render(model.state.search.results);
+		LogDrinkView.render(model.state); // Render shell
+
+		updateLogDrinkUI();
 
 		// Attach listeners
 		SearchBarView.addHandlerGetQuery(handleSearch);
@@ -24,6 +22,13 @@ export const controllLogDrink = async () => {
 	} catch (error) {
 		console.error(error);
 	}
+};
+
+const updateLogDrinkUI = () => {
+	const { results, shortcuts } = model.state.search;
+	SearchBarView.render();
+	SearchShortcutsView.render(shortcuts);
+	DrinksListView.render(results);
 };
 
 const handleToggleDrinkEdit = async (id) => {
@@ -48,8 +53,7 @@ const handleEditorActions = async (id, servings, consumptionTime) => {
 
 const handleSearch = async (query) => {
 	try {
-		await model.searchDrinks(query);
-		DrinksListView.render(model.state.results);
+		DrinksListView.render(model.getQueryResults(query));
 	} catch (error) {
 		console.error(error);
 	}
@@ -57,8 +61,10 @@ const handleSearch = async (query) => {
 
 const handleShortcuts = async (id) => {
 	try {
-		await model.searchShortcuts(id);
-		DrinksListView.render(model.state.search.results);
+		await model.getShortcutResults(id);
+
+		const { results } = model.state.search;
+		DrinksListView.render(results);
 	} catch (error) {
 		console.error(error);
 	}

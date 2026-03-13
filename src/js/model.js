@@ -26,6 +26,7 @@ export const state = {
 	search: {
 		query: "",
 		results: [],
+		categoryResults: [],
 		shortcuts: [],
 	},
 	survey: {
@@ -95,6 +96,10 @@ const setMaxCaffeine = (maxCaffeine) => {
 
 const setHalfLife = (halfLife) => {
 	state.user.halfLife = halfLife;
+};
+
+const setShortcutResults = (results) => {
+	state.search.results = results;
 };
 
 // ---- Calculations Logicc ---- //
@@ -214,38 +219,36 @@ export const startCaffeineMonitor = () => {
 	}, 10000);
 };
 
-export const searchDrinks = async (drinkQuery) => {
-	try {
-		const query = drinkQuery?.toLowerCase().trim();
+export const getQueryResults = (drinkQuery) => {
+	const query = drinkQuery?.toLowerCase().trim();
+	const results = state.search.results.filter((drink) => {
+		return drink.name.toLowerCase().includes(query);
+	});
 
-		const results = state.search.results.filter((drink) => {
-			return drink.name.toLowerCase().includes(query);
-		});
-
-		if (results.length === 0) {
-			throw new Error("Invalid name");
-		}
-
-		state.results = results;
-	} catch (error) {
-		throw error;
+	if (results.length === 0) {
+		throw new Error("Invalid name");
 	}
+	console.log("Query results:", results);
+
+	return results;
 };
 
-export const searchShortcuts = async (shortcutId) => {
+export const getShortcutResults = async (shortcutId) => {
 	const id = shortcutId?.toLowerCase();
-
+	let results;
 	if (id === "all" || !id) {
-		const results = await db.drinks.toArray();
+		results = await db.drinks.toArray();
 		state.search.results = results;
+		console.log("Id is 'all' results:", results);
 	} else {
-		const results = await db.drinks
+		results = await db.drinks
 			.filter((drink) => {
 				return drink.category.toLowerCase() === id;
 			})
 			.toArray();
-		state.search.results = results;
 	}
+
+	setShortcutResults(results);
 };
 
 export const checkDate = async () => {

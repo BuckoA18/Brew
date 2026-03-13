@@ -22,19 +22,14 @@ class SearchShortcutsView extends View {
 
 			handler(id);
 		});
-	}
 
-	setActiveShortcut(id) {
-		this._parentElement
-			.querySelectorAll(".shortcut-btn")
-			.forEach((el) => el.classList.remove("shortcut-btn--active"));
-
-		const shortcut = document.querySelector(`[data-id=${id}]`);
-		shortcut.classList.add("shortcut-btn--active");
+		handler("all");
 	}
 
 	_generateMarkup() {
-		const markup = this._data
+		const shortcuts = this._data;
+
+		const markup = shortcuts
 			.map((shortcut) => {
 				const isActive =
 					shortcut.toLowerCase() === "all" ? "shortcut-btn--active" : "";
