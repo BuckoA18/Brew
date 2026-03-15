@@ -3,9 +3,11 @@
 @use "../abstracts/variables" as v;
 
 .survey {
-	// filter: blur(1rem);
+	max-width: 800px;
 	background-color: map.get(v.$colors, "bg-primary");
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

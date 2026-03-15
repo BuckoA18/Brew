@@ -3,6 +3,16 @@
 // --- Fonts --- //
 $font-primary: "Roboto", sans-serif;
 
+$breakpoints: (
+	"tablet": 768px,
+	// The "768 flip"
+	"laptop": 1024px,
+	// The "Nav expansion"
+	"desktop": 1280px,
+	// The "Standard container"
+	"wide": 1536px, // (Optional) For high-res monitors
+);
+
 $font-sizes: (
 	"xs": 0.4rem,
 	"sm": 0.8rem,

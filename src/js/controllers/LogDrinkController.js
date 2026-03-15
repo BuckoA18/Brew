@@ -33,8 +33,7 @@ const updateLogDrinkUI = () => {
 
 const handleToggleDrinkEdit = async (id) => {
 	try {
-		await model.getDrinkData(id);
-		DrinkEditorView.render(model.state.user.currentDrink);
+		DrinkEditorView.render(await model.getDrinkData(id));
 		DrinkEditorView.toggleDrinkEditor();
 	} catch (error) {
 		console.error(error);

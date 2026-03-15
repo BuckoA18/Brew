@@ -239,7 +239,7 @@ export const getShortcutResults = async (shortcutId) => {
 	if (id === "all" || !id) {
 		results = await db.drinks.toArray();
 		state.search.results = results;
-		console.log("Id is 'all' results:", results);
+		// console.log("Id is 'all' results:", results);
 	} else {
 		results = await db.drinks
 			.filter((drink) => {

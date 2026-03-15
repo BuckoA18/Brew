@@ -1,6 +1,6 @@
 import Dexie from "dexie";
 
-export const db = new Dexie("CaffeineTrackerDB");
+export const db = new Dexie("CaffeineTrackerDB_v2");
 
 db.version(1).stores({
 	drinks: "id, name, category",

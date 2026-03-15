@@ -4,6 +4,7 @@
 @use "../abstracts/variables" as v;
 
 .steps {
+	width: 100%;
 	padding: map.get(v.$spacings, "md");
 	height: 100%;
 	display: flex;
