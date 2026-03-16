@@ -9,18 +9,21 @@ class Survey extends View {
 	_generateMarkup() {
 		const markup = html`
 			<main class="survey">
-				<header class="header">
-					<div class="header__container header__container--survey">
-						<button
-							type="button"
-							class="header__back-btn"
-							aria-label="Next Step"
-						>
-							<i class="fa-solid fa-arrow-left"></i>
-						</button>
-					</div>
-				</header>
-				<form class="steps"></form>
+				<div class="survey__container">
+					<button
+						type="button"
+						class="survey__button-back"
+						aria-label="Next Step"
+					>
+						<i class="fa-solid fa-arrow-left"></i>
+					</button>
+
+					<img
+						src="public/images/undraw_coffee-run_kfzq.svg"
+						alt="friends-having-coffee"
+					/>
+					<form class="steps"></form>
+				</div>
 			</main>
 		`;
 		return markup;
@@ -30,7 +33,7 @@ class Survey extends View {
 		this._parentElement
 			.querySelector(".survey")
 			.addEventListener("click", (e) => {
-				const button = e.target.closest(".header__back-btn");
+				const button = e.target.closest(".survey__button-back");
 				if (!button) return;
 
 				handler();
