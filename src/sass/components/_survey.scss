@@ -13,13 +13,14 @@
 	&__container {
 		width: 100%;
 		height: 100%;
-		max-width: 400px;
+		max-width: map.get(v.$containers, "md");
 
 		@media (min-width: map.get(v.$breakpoints, "tablet")) {
 			padding: 1rem;
 			display: flex;
 			gap: 2rem;
 			max-width: fit-content;
+			min-height: map.get(v.$containers, "md");
 			max-height: fit-content;
 		}
 
@@ -29,7 +30,8 @@
 			@media (min-width: map.get(v.$breakpoints, "tablet")) {
 				display: block;
 				object-fit: contain;
-				max-width: 400px;
+				min-width: map.get(v.$containers, "sm");
+				max-width: map.get(v.$containers, "md");
 				height: auto;
 			}
 		}
@@ -39,7 +41,6 @@
 		position: fixed;
 		top: 1rem;
 		right: 1rem;
-
 		width: 40px;
 		height: 40px;
 		background-color: map.get(v.$colors, "bg-primary");

@@ -11,7 +11,7 @@
 	flex-direction: column;
 
 	@media (min-width: map.get(v.$breakpoints, "tablet")) {
-		min-width: 300px;
+		width: map.get(v.$containers, "md");
 		justify-content: space-between;
 		padding: 0;
 	}

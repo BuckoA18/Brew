@@ -5,12 +5,14 @@ $font-primary: "Roboto", sans-serif;
 
 $breakpoints: (
 	"tablet": 768px,
-	// The "768 flip"
 	"laptop": 1024px,
-	// The "Nav expansion"
 	"desktop": 1280px,
-	// The "Standard container"
-	"wide": 1536px, // (Optional) For high-res monitors
+	"wide": 1536px,
+);
+
+$containers: (
+	"sm": 200px,
+	"md": 400px,
 );
 
 $font-sizes: (
