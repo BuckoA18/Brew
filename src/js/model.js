@@ -20,7 +20,6 @@ export const state = {
 		currentDrink: "",
 		isPregnant: false,
 		bedTime: "",
-		progressPerc: 0,
 		profileReady: false,
 	},
 	search: {
@@ -37,6 +36,52 @@ export const state = {
 };
 
 let caffeineTimer = null;
+
+export const saveUserProfile = async () => {
+	try {
+		const { weight, weightUnit, age, halfLifeMultipliers, isPregnant } =
+			state.user;
+
+		await db.settings.put({
+			key: "profile",
+			weight,
+			weightUnit,
+			age,
+			halfLifeMultipliers,
+			isPregnant,
+			profileReady: true,
+		});
+	} catch (error) {
+		console.error("Failed to save profile");
+	}
+};
+
+export const loadUserProfile = async () => {
+	try {
+		const profileData = await db.settings.get("profile");
+		setUserProfileData(profileData);
+	} catch (error) {
+		console.error("Failed to load user profile");
+	}
+};
+
+const setUserProfileData = (data) => {
+	if (!data) return;
+
+	state.user = {
+		...state.user,
+		weight: data.weight,
+		weightUnit: data.weightUnit,
+		age: data.age,
+		halfLifeMultipliers: data.halfLifeMultipliers,
+		isPregnant: data.isPregnant,
+		profileReady: data.profileReady,
+	};
+
+	calcCaffeineInSystem();
+	calcHalfLife();
+	calcMaxCaffeine();
+};
 
 export const setInitialState = async () => {
 	try {
@@ -61,8 +106,6 @@ export const getCaffeineProgress = () => {
 		(percentage / 100) * config.CAFFEINE_BAR_CIRCUMFERENCE;
 
 	if (percentage >= 100) return 0;
-	console.log(offset);
-
 	return offset;
 };
 
@@ -77,6 +120,10 @@ export const getCaffeineUntillLimit = () => {
 };
 
 // ---- Setters ---- //
+
+const setProfileReady = () => {
+	state.user.profileReady = true;
+};
 
 const setCaffeine = (caffeine) => {
 	state.user.caffeine = caffeine;
@@ -173,8 +220,6 @@ export const calcMaxCaffeine = async () => {
 	const weightInKilos = helper.convertToKilos(weight, weightUnit);
 
 	const weightBasedLimit = Math.round(weightInKilos * rule.multiplier);
-	console.log(weightInKilos);
-
 	const finalLimit =
 		weightBasedLimit > rule.cap_mg ? rule.cap_mg : weightBasedLimit;
 
@@ -206,7 +251,7 @@ export const storeDrink = async (id, servings, consumptionTime) => {
 	db.consumption.add(currentDrink);
 
 	state.user.caffeine += currentDrink.caffeine_mg;
-	state.user.dailyDrinks.unshift(currentDrink);
+	state.user.dailyDrinks.push(currentDrink);
 };
 
 export const startCaffeineMonitor = () => {
@@ -228,8 +273,6 @@ export const getQueryResults = (drinkQuery) => {
 	if (results.length === 0) {
 		throw new Error("Invalid name");
 	}
-	console.log("Query results:", results);
-
 	return results;
 };
 
@@ -239,7 +282,6 @@ export const getShortcutResults = async (shortcutId) => {
 	if (id === "all" || !id) {
 		results = await db.drinks.toArray();
 		state.search.results = results;
-		// console.log("Id is 'all' results:", results);
 	} else {
 		results = await db.drinks
 			.filter((drink) => {
@@ -257,7 +299,7 @@ export const checkDate = async () => {
 		const lastLoggedItem = await db.consumption.orderBy("id").last();
 
 		if (!lastLoggedItem) return;
-		const lastLoggedDate = lastLoggedItem.time.toLocaleDateString();
+		const lastLoggedDate = lastLoggedItem.consumptionTime.toLocaleDateString();
 
 		if (currentDate !== lastLoggedDate) {
 			await db.consumption.clear();

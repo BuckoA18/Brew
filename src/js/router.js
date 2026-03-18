@@ -5,10 +5,6 @@ import { controllLogDrink } from "./controllers/LogDrinkController";
 
 export const initRouter = (navigate) => {
 	window.addEventListener("popstate", () => {
-		console.log(
-			"--DEBUG-- Backwards/Forwards detected, new url: ",
-			window.location.pathname,
-		);
 		navigate();
 	});
 	document.addEventListener("click", (e) => {
@@ -31,7 +27,6 @@ export const navigateTo = (path) => {
 
 export const controllRouter = () => {
 	const path = window.location.pathname;
-	console.log(path);
 
 	switch (path) {
 		case "/welcome":

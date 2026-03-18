@@ -11,29 +11,41 @@
 			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="manifest" href="/assets/manifest-DxJHU8hw.json" />
-		<script type="module" crossorigin src="/assets/index-BMk8mMyw.js"></script>
-		<link rel="stylesheet" crossorigin href="/assets/index-C52AZK5x.css">
+
+		<link rel="manifest" href="/assets/manifest-BN-nuKih.json" />
+		<script type="module" crossorigin src="/assets/index-BB_jQCkU.js"></script>
+		<link rel="stylesheet" crossorigin href="/assets/index-BcGz7UBt.css">
 	</head>
 	<body>
 		<div class="main-view">
-			<!--<header class="header">
-				 <div class="header__content header__content--login">
-					<h2 class="header__title">Welcome to Brew</h2>
-				</div> 
+			<!-- <div class="error">
+				<div class="error__container">
+					<img src="./public/images/mark.png" alt="alert" class="error__img" />
+					<h1 class="error__title">400 - Bad Request</h1>
 
+					<p class="error__description">
+						Weight is too low or empty, minimum is: 30kg
+					</p>
+					<button class="error__button">Ok</button>
+				</div>
+			</div> -->
+			<!-- <header class="header">
+				<div class="header__content header__content--login">
+					<h2 class="header__title">Welcome to Brew</h2>
+				</div>
+				
 				<div class="header__content header__content--dashboard">
 					<h2 class="header__title">Brew</h2>
-					 <div class="header__toggle">
+					<div class="header__toggle">
 						<button class="ham-menu">
 							<span class="ham-menu__line"></span
 							><span class="ham-menu__line"></span
 							><span class="ham-menu__line"></span>
 						</button>
-					</div> 
-				</div>
+					</div>
+				</div> -->
 
-				<div class="header__content header__content--log">
+			<!-- <div class="header__content header__content--log">
 					<div class="header__container">
 						<h2 class="header__title">Log Your Drink</h2>
 						<button class="header__back-btn btn">
@@ -51,9 +63,8 @@
 						<button class="shortcut-btn">Chocolate</button>
 						<button class="shortcut-btn">Energy drink</button>
 						<button class="shortcut-btn">Pills</button>
-					</div>
-				</div> 
-			</header>-->
+					</div> 
+			</header> -->
 
 			<!-- <div class="side-menu"></div> -->
 
@@ -190,49 +201,110 @@
 				</ul>
 			</div> -->
 
-			<!-- <div class="login container">
-				<form class="login__form">
-					<div class="form-group">
-						<label class="login__label" for="input-name">Name</label>
-						<input type="text" class="login__input" id="input-name" />
+			<!-- <div class="drink-editor drink-editor--closed">
+				<div class="drink-editor__grabber"></div>
+				<div class="drink-editor__header">
+					<div class="drink-editor__icon">
+						<i class="fa-solid fa-mug-hot fa-xl"></i>
 					</div>
+					<h2 class="drink-editor__title">Espresso</h2>
 
-					<div class="form-group">
-						<label class="login__label" for="input-surname">Surname</label>
-						<input type="text" class="login__input" id="input-surname" />
+					<span class="drink-editor__caffeine subtle"
+						><span class="highlight">+45</span> mg</span
+					>
+				</div>
+
+				<div class="drink-editor__fields">
+					<div class="drink-editor__field">
+						<label for="amount" class="drink-editor__label">Shots:</label>
+						<input
+							type="number"
+							name="amount"
+							id="amount"
+							class="drink-editor__input drink-editor__input--amount"
+							value="1"
+						/>
+						<div class="drink-editor__wrapper">
+							<button class="drink-editor__button drink-editor__button--plus">
+								+</button
+							><button class="drink-editor__button drink-editor__button--minus">
+								-
+							</button>
+						</div>
 					</div>
-
-					<div class="form-group">
-						<label class="login__label" for="input-weight">Weight (kg)</label>
-						<input type="number" class="login__input" id="input-weight" />
-					</div>
-
-					<div class="form-group">
-						<label class="login__label" for="input-metabolism"
-							>Metabolism Speed</label
-						>
-						<select id="input-metabolism" class="login__input">
-							<option value="fast">Fast (I can sleep after coffee)</option>
-							<option value="normal" selected>Normal</option>
-							<option value="slow">Slow (Sensitive to caffeine)</option>
-						</select>
-					</div>
-
-					<div class="form-group">
-						<label class="login__label" for="input-bedtime"
-							>Target Bedtime</label
+					<div class="drink-editor__field">
+						<label for="consumption" class="drink-editor__label"
+							>Time of consumption:</label
 						>
 						<input
 							type="time"
-							id="input-bedtime"
-							class="login__input"
-							value="22:30"
+							name="consumption"
+							id="consumption"
+							class="drink-editor__input"
+							value="09:14"
 						/>
 					</div>
+					<div class="drink-editor__field">
+						<button class="btn btn--save">Save</button>
+					</div>
+				</div>
+			</div> -->
 
-					<button class="login__button btn">Set Up Profile</button>
-				</form>
-			</div>  -->
+			<!-- <main class="login">
+				<img
+					src="/images/undraw_coffee-with-friends_ocg2 (1).svg"
+					alt="Friends sharing coffee"
+					class="login__image"
+				/>
+				<div class="login__container">
+					<div class="login__group login__group--info">
+						<h1 class="login__title">Welcome to Brew</h1>
+						<p class="login__description">Caffeine tracking made simple</p>
+					</div>
+					<div class="login__group login__group--actions">
+						<button class="login__button">Get Started</button>
+						<a href="/" class="login__link subtle">Skip</a>
+					</div>
+				</div>
+			</main> -->
+			<!-- <main class="survey">
+				<div class="survey__container>
+
+					<div class="survey__card">
+						<h2 class="survey__title">Let's personalize your experience</h2>
+					</div> 
+					 <div class="survey__card">
+						<h1 class="survey__title">
+							<label for="bodyweight">What is your current weight?</label>
+						</h1>
+						<input type="number" id="bodyweight" class="survey__input" />
+					</div> 
+					 <div class="survey__card">
+						<h1 class="survey__title">
+							<label for="age">How old are you?</label>
+						</h1>
+						<input type="number" id="age" class="survey__input" />
+					</div> 
+					 <div class="survey__card">
+						<h1 class="survey__title">Metabolic Profile</h1>
+						<div class="factors">
+							<div class="factors__card factors__card--selected">
+								<h2 class="factors__title">Smoking</h2>
+							</div>
+							<div class="factors__card">
+								<h2 class="factors__title">Pregnancy</h2>
+							</div>
+							<div class="factors__card factors__card--selected">
+								<h2 class="factors__title">Contraceptives</h2>
+							</div>
+						</div>
+					</div> 
+					<div class="survey__card">
+						<h2 class="survey__title">You're all set! Let's go</h2>
+					</div>
+					<button class="survey__button survey__button--next">Next</button>
+				</div>
+			</main> -->
 		</div>
 	</body>
 </html>

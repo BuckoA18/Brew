@@ -21,4 +21,5 @@ export const clearTable = (tableName) => {
 	tableName.clear();
 	console.log("Table deleted: ", tableName.toArray());
 };
-clearTable(db.consumption);
+// clearTable(db.consumption);
+// clearTable(db.settings);

@@ -19,7 +19,7 @@ class Survey extends View {
 					</button>
 
 					<img
-						src="public/images/undraw_coffee-run_kfzq.svg"
+						src="/images/undraw_coffee-run_kfzq.svg"
 						alt="friends-having-coffee"
 					/>
 					<form class="steps"></form>

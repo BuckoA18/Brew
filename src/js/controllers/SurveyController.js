@@ -2,6 +2,7 @@ import * as model from "../model";
 import * as helper from "../utilities/helpers";
 import * as config from "../utilities/config";
 import * as router from "../router";
+import { db } from "../db";
 import SurveyView from "../views/SurveyView";
 import StepsView from "../views/StepsView";
 
@@ -58,6 +59,10 @@ const handleSurveyNav = async (inputValue) => {
 	if (model.state.survey.currentStep === maxSteps) {
 		await model.calcMaxCaffeine();
 		await model.calcHalfLife();
+
+		await model.saveUserProfile();
+
+		console.log(db.settings.toArray());
 		router.navigateTo("/");
 		return;
 	}
