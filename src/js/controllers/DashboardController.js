@@ -18,6 +18,8 @@ export const controllDashboard = async () => {
 
 		ProgressBarView.updateProgressBar(model.getCaffeineProgress());
 		CaffieneMonitorView.updateProgressBar(model.getMonitorProgress());
+
+		DailyLogView.addHandlerHandleCardActions(handleCardActions);
 	} catch (error) {
 		console.error(error);
 	}
@@ -29,4 +31,8 @@ const updateDashboardUI = () => {
 	IntakeLimitView.render(model.getCaffeineUntillLimit());
 	CaffieneMonitorView.render(user);
 	DailyLogView.render(user);
+};
+
+const handleCardActions = () => {
+	console.log("first");
 };

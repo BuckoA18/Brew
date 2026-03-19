@@ -4,11 +4,32 @@
 
 .drink-card {
 	@include mix.card;
-
 	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 1rem;
+	flex-direction: column;
+
+	&--closed {
+		.drink-card__actions {
+			max-height: 0;
+			opacity: 0;
+		}
+	}
+
+	&__container {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		max-height: 200px;
+		opacity: 1;
+		transition:
+			max-height 0.2s ease,
+			opacity 0.2s ease;
+	}
 
 	&__icon {
 		display: flex;
@@ -33,5 +54,13 @@
 	&__caffeine {
 		font-weight: 600;
 		margin-left: auto;
+	}
+
+	&__button {
+		height: 44px;
+		width: 44px;
+		background-color: transparent;
+		border: none;
+		color: map.get(v.$colors, "text-primary");
 	}
 }
