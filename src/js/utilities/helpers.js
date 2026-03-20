@@ -40,17 +40,6 @@ export const validateSurvey = async (data) => {
 	}
 };
 
-export const createShortcuts = () => {
-	model.state.search.shortcuts = [
-		"All",
-		...new Set(
-			model.state.drinks.map((drink) => {
-				return drink.category;
-			}),
-		),
-	];
-};
-
 export const getMultiplierValue = (values) => {
 	if (values.length <= 0) return config.METABOLIC_FACTORS.BASELINE_MULTIPLIER;
 	const multiplier = values.reduce(

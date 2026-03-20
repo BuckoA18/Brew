@@ -24,6 +24,7 @@ const updateDashboardUI = async () => {
 	ProgressBarView.updateProgressBar(model.getCaffeineProgress());
 	CaffeineMonitorView.updateProgressBar(model.getMonitorProgress());
 };
+
 export const controllDashboard = async () => {
 	try {
 		// Calc caffeine

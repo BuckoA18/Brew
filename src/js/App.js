@@ -1,5 +1,6 @@
 import CaffeineMonitorView from "./views/CaffeineMonitorView"; // FIX TYPO
 import "../sass/main.scss";
+import { EVENTS } from "./utilities/config";
 import * as router from "./router";
 import * as model from "./model";
 
@@ -32,7 +33,7 @@ const init = async () => {
 			model.setInitialState(),
 		]);
 
-		model.subscribe("caffeineInSystemUpdated", updateCaffeineMonitor);
+		model.subscribe(EVENTS.CAFFEINE_IN_SYSTEM_UPDATED, updateCaffeineMonitor);
 
 		const initilRoute = model.state.user.profileReady ? "/" : "/welcome";
 		router.navigateTo(initilRoute);
