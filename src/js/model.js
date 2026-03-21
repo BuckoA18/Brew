@@ -8,7 +8,6 @@ import {
 	CAFFEINE_BAR_CIRCUMFERENCE,
 } from "./utilities/config";
 import { db, seedDatabase } from "./db";
-import "./InitialDrinks";
 
 // ---- State ---- //
 
@@ -106,7 +105,7 @@ const setUserProfileData = (data) => {
 
 const fetchDrinks = async () => {
 	try {
-		const repsonse = await fetch("./src/js/InitialDrinks.json");
+		const repsonse = await fetch("/InitialDrinks.json");
 		if (repsonse.ok) {
 			const data = await repsonse.json();
 			return data;

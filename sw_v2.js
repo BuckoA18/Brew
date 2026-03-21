@@ -1,5 +1,5 @@
-const staticCache = "app-static-v1";
-const dynamicCache = "app-dynamic-v1";
+const staticCache = "app-static-v3";
+const dynamicCache = "app-dynamic-v3";
 // const shellAssets = [
 // 	"/",
 // 	"/index.html",
