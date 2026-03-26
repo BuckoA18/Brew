@@ -1,7 +1,7 @@
 # Brew 
 https://brewtest.netlify.app/
 
-A progressive web app for tracking caffeine intake and understanding how it affects your sleep. Brew helps you monitor your daily caffeine consumption and calculates when it's safe to sleep based on individual caffeine metabolism.
+Brew was mainly build to strenghten my vanilla js understanding and best practices in a real project.
 
 ## Technologies
 
@@ -21,6 +21,10 @@ A progressive web app for tracking caffeine intake and understanding how it affe
 
 
 ## Architecture 
+
+### **Clean and scalable code
+- I have tried to follow indrustries best practices in building this app
+ 
 
 ### **MVC Architecture**
 - **Model** : State management and business logic
