@@ -2,7 +2,7 @@
 Personalized Caffeine Tracking
 https://brewtest.netlify.app/
 
-Brew is a real-time caffeine metabolism tracker designed to move beyond generic daily limits. Originally started as a deep-dive into Vanilla JS best practices, it evolved into a functional tool that models caffeine decay based on individual user data.
+Brew is a real-time caffeine metabolism tracker designed to move beyond generic daily limits. Originally started as a project to practice Vanilla JS best practices, it evolved into a functional tool that models caffeine decay based on individual user data.
 
 ## Technologies
 
@@ -35,11 +35,10 @@ Brew is a real-time caffeine metabolism tracker designed to move beyond generic 
 
 - Daily caffeine intake and caffeine monitor BOTH resets at midnight
 - To reset data you must clear browser CACHE
+- Simple error handling
 - No custom drinks
 - No test implementation
-- Simple error handling
 - Could have widgets and notifications
-- Could implement more features so the dashboard isnt as empty
 - Could implement stats!
   
 
