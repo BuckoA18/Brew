@@ -9,11 +9,9 @@ Brew is a real-time caffeine metabolism tracker designed to move beyond generic 
 - **Vanilla JavaScript (ES6+)**
 - **Vite**
 - **SCSS**
-- **Service Workers**
 - **IndexedDB (Dexie)**
 
 ## Features
-- **Instalable PWA:** Brew can work fully offline due to simple SW logic and caching
 - **Pure Vanilla JS:** Built to demonstrate clean DOM manipulation, state management, separation of concerns and best practices using standard ES6+ features
 - **Custom tracking:** Unlike static trackers, Brew adjusts your maximum daily intake based on age, weight, and metabolic profile
 - **Real time tracking:** Real-time tracking of caffeine to help you understand exactly when the 4:00 PM espresso will actually leave your system
